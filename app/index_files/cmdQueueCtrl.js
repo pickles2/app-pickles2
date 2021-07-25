@@ -148,10 +148,6 @@ module.exports = function(px, window){
 		_this.hide();
 	});
 
-	setTimeout(function(){
-		// TODO: 確認用。用事が済んだら消す。
-		_this.client.addQueueItem(['php', '-v']);
-	},3000);
 
 	/**
 	 * メイン端末を表示する

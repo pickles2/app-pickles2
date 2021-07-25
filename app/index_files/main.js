@@ -214,10 +214,23 @@ new (function($, window){
 					});
 				},
 				function(it1){
+					// db.json の読み込み
+					$('.splash__message p').text('データを読み込んでいます...');
+					main.load(function(){
+						setTimeout(function(){
+							it1.next();
+						}, 500);
+						return;
+					});
+					return;
+				},
+				function(it1){
 					if( main.getAppearance() == 'dark' ){
 						$('body').addClass('px2-darkmode');
 					}
-					it1.next();
+					setTimeout(function(){
+						it1.next();
+					}, 500);
 				},
 				function(it1){
 					// Command Queue をセットアップ
@@ -297,47 +310,6 @@ new (function($, window){
 					return;
 				},
 				function(it1){
-					// db.json の読み込み
-					$('.splash__message p').text('データを読み込んでいます...');
-					main.load(function(){
-						it1.next();
-						return;
-					}); // main.load()
-					return;
-				},
-				function(it1){
-					// ウィンドウ位置とサイズの初期化
-					$('.splash__message p').text('ウィンドウ位置とサイズの初期化...');
-					var db = main.px2dtLDA.getData();
-					var winPosition = {
-						"x": 0,
-						"y": 0,
-						"width": window.screen.width,
-						"height": window.screen.height
-					};
-					try{
-						if( typeof(db.extra.px2dt.windowPosition) === typeof({}) ){
-							winPosition = db.extra.px2dt.windowPosition;
-						}
-						// 位置ずれ補正
-						if( winPosition.width < 100 ){
-							winPosition.width = 100;
-						}
-						if( winPosition.height < 100 ){
-							winPosition.height = 100;
-						}
-						if( winPosition.x > window.screen.width - 50 || winPosition.y > window.screen.height - 50 ){
-							winPosition.x = 0;
-							winPosition.y = 0;
-						}
-					}catch(e){}
-					main.nwWindow.moveTo(winPosition.x, winPosition.y);
-					main.nwWindow.resizeTo(winPosition.width, winPosition.height);
-
-					it1.next();
-					return;
-				},
-				function(it1){
 					$('.splash__message p').text('composer パッケージをチェックしています...');
 					var ComposerInstallChecker = require('./index_files/pickles.composerInstallChecker.js');
 					main.composerInstallChecker = new ComposerInstallChecker( px, function(){
@@ -395,10 +367,44 @@ new (function($, window){
 					it1.next();
 				},
 				function(it1){
-					// HTMLコードを配置
-					$('body').html( document.getElementById('template-outer-frame').innerHTML );
-					px2style.header.init({"current":""});
+					// ウィンドウ位置とサイズの初期化
+					$('.splash__message p').text('ウィンドウ位置とサイズの初期化...');
+					var db = main.px2dtLDA.getData();
+					var winPosition = {
+						"x": 0,
+						"y": 0,
+						"width": window.screen.width,
+						"height": window.screen.height
+					};
+					try{
+						if( typeof(db.extra.px2dt.windowPosition) === typeof({}) ){
+							winPosition = db.extra.px2dt.windowPosition;
+						}
+						// 位置ずれ補正
+						if( winPosition.width < 100 ){
+							winPosition.width = 100;
+						}
+						if( winPosition.height < 100 ){
+							winPosition.height = 100;
+						}
+						if( winPosition.x > window.screen.width - 50 || winPosition.y > window.screen.height - 50 ){
+							winPosition.x = 0;
+							winPosition.y = 0;
+						}
+					}catch(e){}
+					main.nwWindow.moveTo(winPosition.x, winPosition.y);
+					main.nwWindow.resizeTo(winPosition.width, winPosition.height);
+
 					it1.next();
+					return;
+				},
+				function(it1){
+					// セッティング状態をチェックする 
+					var SettingConditionChecker = require('./index_files/settingConditionChecker.js');
+					var settingConditionChecker = new SettingConditionChecker(_this, window);
+					settingConditionChecker.check(() => {
+						it1.next();
+					});
 				},
 				function(it1){
 					// アプリの更新を自動チェック
@@ -427,7 +433,12 @@ new (function($, window){
 					}
 					it1.next();
 				},
-
+				function(it1){
+					// HTMLコードを配置
+					$('body').html( document.getElementById('template-outer-frame').innerHTML );
+					px2style.header.init({"current":""});
+					it1.next();
+				},
 				function(it1){
 					// WASABI API Client
 					var wasabiClient = require('./index_files/wasabi/wasabi-client.js');
