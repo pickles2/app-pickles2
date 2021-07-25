@@ -400,6 +400,7 @@ new (function($, window){
 				},
 				function(it1){
 					// セッティング状態をチェックする 
+					$('.splash__message p').text('コマンドの設定をチェックしています...');
 					var SettingConditionChecker = require('./index_files/settingConditionChecker.js');
 					var settingConditionChecker = new SettingConditionChecker(_this, window);
 					settingConditionChecker.check(() => {

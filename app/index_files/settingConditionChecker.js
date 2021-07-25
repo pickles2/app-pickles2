@@ -18,15 +18,6 @@ module.exports = function(main, window){
 				}, 50);
 			},
 			function(it79){
-				checkCmd('git', function(res){
-					console.log('git:', res);
-					if( !res.available ){
-						alert('gitコマンドが利用できません。'+"\n"+'アプリケーション設定から、gitコマンドのパスの設定を見直してください。');
-					}
-					it79.next();
-				});
-			},
-			function(it79){
 				checkCmd('php', function(res){
 					console.log('php:', res);
 					if( !res.available ){
@@ -35,11 +26,15 @@ module.exports = function(main, window){
 					it79.next();
 				});
 			},
-			// function(it79){
-			// 	setTimeout(function(){
-			// 		it79.next();
-			// 	}, 2000);
-			// },
+			function(it79){
+				checkCmd('git', function(res){
+					console.log('git:', res);
+					if( !res.available ){
+						alert('gitコマンドが利用できません。'+"\n"+'アプリケーション設定から、gitコマンドのパスの設定を見直してください。');
+					}
+					it79.next();
+				});
+			},
 			function(){
 				callback();
 			},
@@ -53,10 +48,9 @@ module.exports = function(main, window){
 	function checkCmd(cmd, callback){
 		var res = {
 			"available": false,
-			"stdout": false,
-			"stderr": false,
+			"stdout": '',
+			"stderr": '',
 			"code": false,
-			"version": false,
 		};
 
 		var subCmd = ['-v'];
@@ -87,7 +81,7 @@ module.exports = function(main, window){
 					// console.log(code);
 					res.code = code;
 					if( !res.available || res.code !== 0 ){
-						cmdSettingDialog(cmd, function(){
+						cmdSettingDialog(cmd, res, function(){
 							checkCmd(cmd, callback);
 							return;
 						});
@@ -105,7 +99,7 @@ module.exports = function(main, window){
 	/**
 	 * コマンドが利用できない状態の場合に、設定画面を表示する
 	 */
-	function cmdSettingDialog( cmd, callback ){
+	function cmdSettingDialog( cmd, res, callback ){
 		var targetCmd = cmd;
 		if( main.px2dtLDA.db.commands && main.px2dtLDA.db.commands[cmd] ){
 			targetCmd = main.px2dtLDA.db.commands[cmd];
@@ -119,6 +113,9 @@ module.exports = function(main, window){
 			.append( $('<p>').text('お使いの環境に '+cmd+' コマンドがインストールされていない場合は、先にインストールしてください。') )
 			.append( $('<p>')
 				.append( $('<input type="text" name="cmd-new-path" value="" class="px2-input px2-input--block" />').val(targetCmd) )
+			)
+			.append( $('<pre>')
+				.append( $('<code>').text(res.stdout + res.stderr) )
 			)
 		;
 
