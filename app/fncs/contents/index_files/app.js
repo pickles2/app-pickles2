@@ -4509,7 +4509,7 @@ module.exports = function(app, px, pj, $elms, contentsComment, wasabiComment){
 										title: 'コンテンツのソースコードを表示',
 										body: $('<div>')
 											.append( $('<p>').text('ソースの閲覧・確認ができます。ここで編集はできません。'))
-											.append( $('<p>').text('GUI編集されたコンテンツの場合は、編集後にビルドされたソースが表示されています。'))
+											.append( $('<p>').text('ブロックエディタでされたコンテンツの場合は、編集後にビルドされたソースが表示されています。'))
 											.append( $('<p>')
 												.append( $('<textarea class="form-control">')
 													.val(src)
@@ -4829,7 +4829,7 @@ module.exports = function(app, px, pj, $elms, contentsComment, wasabiComment){
 				$dropdownMenu
 					.append( $('<li>')
 						.append( $('<a>')
-							.text( 'GUI編集コンテンツを再構成する' )
+							.text( 'ブロックエディタのコンテンツを再構成する' )
 							.attr({
 								'title':'モジュールの変更を反映させます。',
 								'data-path': prop.pageInfo.path ,
