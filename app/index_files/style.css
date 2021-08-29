@@ -54,6 +54,9 @@
   .theme_ui_px_live_report--hidden {
     transform: translateY(20px);
     opacity: 0; }
+  .px2-darkmode .theme_ui_px_live_report {
+    background-color: #111;
+    color: #aaa; }
 
 /**
  * status bar
@@ -77,6 +80,9 @@
     justify-content: flex-start; }
   .theme-statusbar__right {
     justify-content: flex-end; }
+  .px2-darkmode .theme-statusbar {
+    background-color: #060606;
+    border-top-color: #444; }
 
 .contents {
   position: fixed;
@@ -157,18 +163,15 @@
     overflow: hidden;
     transition: bottom 0.3s ease-out 0s;
     background-color: #fefefe; }
+    .px2-darkmode .theme-command-terminal__main {
+      background-color: #111;
+      color: #aaa; }
   .theme-command-terminal__title-bar {
     padding: 4px 1em;
     border-top: 1px solid #f0f0f0; }
+    .px2-darkmode .theme-command-terminal__title-bar {
+      border-top: 1px solid #111; }
   .theme-command-terminal__cQ {
     position: relative;
     flex-grow: 1;
     width: 100%; }
-
-.px2-darkmode {
-  /**
- * status bar
- */ }
-  .px2-darkmode .theme-statusbar {
-    background-color: #060606;
-    border-top-color: #444; }

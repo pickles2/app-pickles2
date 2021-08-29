@@ -64,6 +64,10 @@ body{
 		transform: translateY(20px);
 		opacity: 0;
 	}
+	.px2-darkmode & {
+		background-color: #111;
+		color: #aaa;
+	}
 }
 
 /**
@@ -92,6 +96,11 @@ body{
 	}
 	&__right{
 		justify-content: flex-end;
+	}
+
+	.px2-darkmode & {
+		background-color: #060606;
+		border-top-color: #444;
 	}
 }
 
@@ -169,6 +178,3 @@ body{
 
 // CmdQueue Terminal
 @import "./style.css.ignore/_commandQueue.css.scss";
-
-// Dark Mode
-@import "./style.css.ignore/_darkmode.css.scss";

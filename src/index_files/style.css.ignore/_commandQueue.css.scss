@@ -20,10 +20,18 @@
 		overflow:  hidden;
 		transition: bottom 0.3s ease-out 0s;
 		background-color: #fefefe;
+
+		.px2-darkmode & {
+			background-color: #111;
+			color: #aaa;
+		}
 	}
 	&__title-bar{
 		padding: 4px 1em;
 		border-top: 1px solid #f0f0f0;
+		.px2-darkmode & {
+			border-top: 1px solid #111;
+		}
 	}
 	&__cQ{
 		position: relative;
