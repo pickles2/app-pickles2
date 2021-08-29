@@ -25240,7 +25240,7 @@ module.exports = function(px2ce){
 							+ '<p>コンテンツファイルが存在しません。</p>'
 							+ '<p>次の中からコンテンツの種類を選択し、作成してください。</p>'
 							+ '<ul>'
-								+ '<li><label><input type="radio" name="editor-mode" value="html.gui" checked="checked" /> HTML + GUI Editor (<%= basename %> + data files)</label></li>'
+								+ '<li><label><input type="radio" name="editor-mode" value="html.gui" checked="checked" /> ブロックエディタ (<%= basename %> + data files)</label></li>'
 								+ '<li><label><input type="radio" name="editor-mode" value="html" /> HTML (<%= basename %>)</label></li>'
 								+ '<li><label><input type="radio" name="editor-mode" value="md" /> Markdown (<%= basename %>.md)</label></li>'
 							+ '</ul>'
@@ -25450,7 +25450,7 @@ module.exports = function(px2ce){
 
 							case 'html.gui':
 								// broccoli
-								$canvas.html('<p>GUIエディタを起動します。</p>');
+								$canvas.html('<p>ブロックエディタを起動します。</p>');
 								editor = new (require('./editor/broccoli/broccoli.js'))(_this);
 								editor.init(editorOption, function(){
 									it1.next(data);
