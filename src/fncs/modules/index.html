@@ -29,6 +29,15 @@
 
 	</head>
 	<body>
+		<script>
+		(function(){
+			var isDarkmode = window.parent.document.getElementsByTagName('body')[0].classList.contains("px2-darkmode");
+			if( isDarkmode ){
+				document.getElementsByTagName('body')[0].classList.add("px2-darkmode");
+			}
+		})();
+		</script>
+
 		<div class="theme-h1-container">
 			<div class="theme-h1-container__heading">
 				<h1>モジュール</h1>
