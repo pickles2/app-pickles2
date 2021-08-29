@@ -3470,7 +3470,7 @@ window.contApp = new (function(){
 				it1.next();
 			},
 			function(it1){
-				$elm.text(customConsoleExtensionId);
+				$elm.text('Loading ...');
 				it1.next();
 			},
 			function(it1){
