@@ -134,6 +134,16 @@
   border-top-color: transparent;
   border-bottom-color: transparent; }
 
+.px2-open-in-new-window:after {
+  content: '';
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDplZDc1YjU3Zi0xN2JmLTQ1M2QtYTU2Yi04NzdkZDRjYjdmNTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkZGNTIyODQ5QThGMTFFOThGRDdBQTREMEZBOEJGRTkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkZGNTIyODM5QThGMTFFOThGRDdBQTREMEZBOEJGRTkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDplZDc1YjU3Zi0xN2JmLTQ1M2QtYTU2Yi04NzdkZDRjYjdmNTMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ZWQ3NWI1N2YtMTdiZi00NTNkLWE1NmItODc3ZGQ0Y2I3ZjUzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+XVsr4gAAAAlQTFRF4uLiZmZm////FEU16AAAAAN0Uk5T//8A18oNQQAAAEBJREFUeNpiYAIDBkIAqowRLxhVRq4ywgCijKA5o8ooVEYw/AepMlSP0EkZNjYWZbAyZngow5eQaKOMqLIZIMAA4+ID9MPe1VIAAAAASUVORK5CYII=);
+  width: 0.8em;
+  height: 0.8em;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 0.3em; }
+
 .px2-list {
   padding: 0 0 0 40px; }
   .px2-list li {
@@ -324,8 +334,30 @@
       background-color: #eee;
       color: #999;
       cursor: pointer; }
+      .px2-modal__close button::before, .px2-modal__close button::after {
+        content: "";
+        border-bottom: 1px solid #999;
+        width: 70%;
+        position: absolute;
+        top: 50%;
+        left: 15%; }
       .px2-modal__close button::before {
-        content: "×"; }
+        transform: rotate(45deg); }
+      .px2-modal__close button::after {
+        transform: rotate(-45deg); }
+      .px2-modal__close button:hover {
+        border: 1px solid #666;
+        background-color: #f9f9f9; }
+        .px2-modal__close button:hover::before, .px2-modal__close button:hover::after {
+          border-bottom: 1px solid #666; }
+
+@keyframes px2-modal--initial {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0; }
+  100% {
+    transform: translateY(0);
+    opacity: 1; } }
   .px2-modal__dialog {
     position: relative;
     top: 0;
@@ -346,7 +378,9 @@
     height: auto;
     max-height: calc(100% - 40px);
     overflow: visible;
-    font-size: medium; }
+    border-radius: 5px;
+    font-size: medium;
+    animation: px2-modal--initial .3s ease 0s 1 normal none running; }
     .px2-modal__dialog h1 {
       font-size: 124%;
       margin: 0;
@@ -371,12 +405,13 @@
       font-size: 100%;
       margin: 1em 0 0.5em 0;
       font-weight: bold; }
-    .px2-modal__dialog h2 {
-      border-bottom: 1px solid var(--px2-main-color); }
+    .px2-modal__dialog--closed {
+      animation: px2-modal--initial .3s ease 0s 1 reverse forwards running; }
   .px2-modal__header {
-    border-bottom: 1px solid var(--px2-main-color);
-    padding: 0 20px;
-    margin-bottom: 0.5em; }
+    border-bottom: 1px solid #999;
+    padding: 8px 20px;
+    margin-bottom: 0.5em;
+    box-shadow: 0 5px 12px -5px rgba(0, 0, 0, 0.1); }
   .px2-modal__body {
     position: relative;
     top: 0;
@@ -388,7 +423,7 @@
   .px2-modal__title {
     font-weight: bold; }
   .px2-modal__footer {
-    border-top: 1px solid var(--px2-main-color);
+    border-top: 1px solid #999;
     margin: 10px 0 0 0;
     padding: 10px 20px 0 20px;
     display: -ms-flexbox;
@@ -1435,15 +1470,6 @@ select.px2-input {
           color: #eee; }
         .px2-darkmode .px2-header__shoulder-menu > ul li.px2-header__shoulder-menu-group ul li a.current {
           color: #eee; }
-  .px2-darkmode .px2-modal {
-    background: rgba(223, 223, 223, 0.5); }
-    .px2-darkmode .px2-modal__close button {
-      border-color: #666;
-      background-color: #111;
-      color: #666; }
-    .px2-darkmode .px2-modal__dialog {
-      color: #ccc;
-      background-color: #242424; }
   .px2-darkmode .px2-btn {
     background-color: #242424;
     color: #ccc;
@@ -1520,6 +1546,45 @@ select.px2-input {
       box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
       .px2-darkmode .px2-btn--toggle-on[disabled]:focus, .px2-darkmode .px2-btn--toggle-on[disabled]:hover, .px2-darkmode .px2-btn--toggle-on[disabled]:active {
         box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
+  .px2-darkmode .px2-modal {
+    background: rgba(223, 223, 223, 0.5); }
+    .px2-darkmode .px2-modal__close button {
+      border-color: #999;
+      background-color: #111;
+      color: #999; }
+      .px2-darkmode .px2-modal__close button::before, .px2-darkmode .px2-modal__close button::after {
+        border-bottom: 1px solid #999; }
+      .px2-darkmode .px2-modal__close button:hover {
+        border: 1px solid #ccc;
+        background-color: #000; }
+        .px2-darkmode .px2-modal__close button:hover::before, .px2-darkmode .px2-modal__close button:hover::after {
+          border-bottom: 1px solid #ccc; }
+    .px2-darkmode .px2-modal__dialog {
+      color: #ccc;
+      background-color: #242424; }
+    .px2-darkmode .px2-modal__header {
+      border-bottom: 1px solid #999;
+      box-shadow: 0 5px 12px -5px rgba(255, 255, 255, 0.4); }
+  .px2-darkmode .px2-notice {
+    color: #91b4da;
+    background-color: #1f456e;
+    border: 1px solid #3c6794; }
+  .px2-darkmode .px2-notice.px2-notice--success {
+    color: #98c4a2;
+    background-color: #1b5c2a;
+    border-color: #458052; }
+  .px2-darkmode .px2-notice.px2-notice--warning {
+    color: #d6c9a3;
+    background-color: #68561c;
+    border-color: #948b6c; }
+  .px2-darkmode .px2-notice.px2-notice--danger {
+    color: #dfc7ca;
+    background-color: #5e1319;
+    border-color: #91595f; }
+  .px2-darkmode .px2-notice.px2-notice--info {
+    color: #bbe1e7;
+    background-color: #144b55;
+    border-color: #5b868d; }
   .px2-darkmode .px2-table {
     color: #ccc; }
     .px2-darkmode .px2-table th,
