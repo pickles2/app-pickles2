@@ -47,7 +47,7 @@
     "semver": "^5.3.0",
     "socket.io": "^2.4.0",
     "twig": "^0.8.2",
-    "url-parse": "^1.1.1",
+    "url-parse": "^1.5.2",
     "utils79": "file:submodules/node-utils79",
     "zip-folder": "^1.0.0"
   },
