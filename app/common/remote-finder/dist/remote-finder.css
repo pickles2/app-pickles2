@@ -133,6 +133,15 @@
     border-color: var(--px2-main-color);
     border-top-color: transparent;
     border-bottom-color: transparent; }
+  .remote-finder .px2-open-in-new-window:after {
+    content: '';
+    background-image: url("links/resources/link.png");
+    width: 0.8em;
+    height: 0.8em;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 0.3em; }
   .remote-finder .px2-list {
     padding: 0 0 0 40px; }
     .remote-finder .px2-list li {
@@ -309,8 +318,30 @@
         background-color: #eee;
         color: #999;
         cursor: pointer; }
+        .remote-finder .px2-modal__close button::before, .remote-finder .px2-modal__close button::after {
+          content: "";
+          border-bottom: 1px solid #999;
+          width: 70%;
+          position: absolute;
+          top: 50%;
+          left: 15%; }
         .remote-finder .px2-modal__close button::before {
-          content: "×"; }
+          transform: rotate(45deg); }
+        .remote-finder .px2-modal__close button::after {
+          transform: rotate(-45deg); }
+        .remote-finder .px2-modal__close button:hover {
+          border: 1px solid #666;
+          background-color: #f9f9f9; }
+          .remote-finder .px2-modal__close button:hover::before, .remote-finder .px2-modal__close button:hover::after {
+            border-bottom: 1px solid #666; }
+
+@keyframes px2-modal--initial {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0; }
+  100% {
+    transform: translateY(0);
+    opacity: 1; } }
     .remote-finder .px2-modal__dialog {
       position: relative;
       top: 0;
@@ -331,7 +362,9 @@
       height: auto;
       max-height: calc(100% - 40px);
       overflow: visible;
-      font-size: medium; }
+      border-radius: 5px;
+      font-size: medium;
+      animation: px2-modal--initial .3s ease 0s 1 normal none running; }
       .remote-finder .px2-modal__dialog h1 {
         font-size: 124%;
         margin: 0;
@@ -356,12 +389,13 @@
         font-size: 100%;
         margin: 1em 0 0.5em 0;
         font-weight: bold; }
-      .remote-finder .px2-modal__dialog h2 {
-        border-bottom: 1px solid var(--px2-main-color); }
+      .remote-finder .px2-modal__dialog--closed {
+        animation: px2-modal--initial .3s ease 0s 1 reverse forwards running; }
     .remote-finder .px2-modal__header {
-      border-bottom: 1px solid var(--px2-main-color);
-      padding: 0 20px;
-      margin-bottom: 0.5em; }
+      border-bottom: 1px solid #999;
+      padding: 8px 20px;
+      margin-bottom: 0.5em;
+      box-shadow: 0 5px 12px -5px rgba(0, 0, 0, 0.1); }
     .remote-finder .px2-modal__body {
       position: relative;
       top: 0;
@@ -373,7 +407,7 @@
     .remote-finder .px2-modal__title {
       font-weight: bold; }
     .remote-finder .px2-modal__footer {
-      border-top: 1px solid var(--px2-main-color);
+      border-top: 1px solid #999;
       margin: 10px 0 0 0;
       padding: 10px 20px 0 20px;
       display: -ms-flexbox;
@@ -400,6 +434,7 @@
   .remote-finder .px2-editor-type {
     display: inline-block;
     font-size: 12px;
+    font-family: sans-serif;
     line-height: 1;
     padding: 0.4em 1em;
     text-align: center;
@@ -407,6 +442,7 @@
     .remote-finder .px2-editor-type__html, .remote-finder .px2-editor-type--html {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -417,16 +453,18 @@
     .remote-finder .px2-editor-type__html-gui, .remote-finder .px2-editor-type--html-gui {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
       color: #fff;
       background-color: #9f5b75; }
       .remote-finder .px2-editor-type__html-gui:before, .remote-finder .px2-editor-type--html-gui:before {
-        content: "GUI"; }
+        content: "Block"; }
     .remote-finder .px2-editor-type__txt, .remote-finder .px2-editor-type--txt {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -437,6 +475,7 @@
     .remote-finder .px2-editor-type__md, .remote-finder .px2-editor-type--md {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -447,6 +486,7 @@
     .remote-finder .px2-editor-type__jade, .remote-finder .px2-editor-type--jade {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -457,6 +497,7 @@
     .remote-finder .px2-editor-type__not-exists, .remote-finder .px2-editor-type--not-exists {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -467,6 +508,7 @@
     .remote-finder .px2-editor-type__page-not-exists, .remote-finder .px2-editor-type--page-not-exists {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -477,6 +519,7 @@
     .remote-finder .px2-editor-type__alias, .remote-finder .px2-editor-type--alias {
       display: inline-block;
       font-size: 12px;
+      font-family: sans-serif;
       line-height: 1;
       padding: 0.4em 1em;
       text-align: center;
@@ -505,7 +548,8 @@
     -ms-flex-line-pack: center;
         align-content: center;
     text-align: center;
-    padding: 80px; }
+    padding: 80px;
+    z-index: 1010000; }
     .remote-finder .px2-loading::before {
       display: block;
       content: "";
@@ -862,7 +906,9 @@
       .remote-finder .px2-header__global-menu ul {
         display: none; }
       .remote-finder .px2-header .px2-header__shoulder-global-menu {
-        display: block; } }
+        display: block; }
+      .remote-finder .px2-header .px2-header__shoulder-global-menu--last {
+        border-bottom: 5px solid #aaa; } }
   .remote-finder input[type=text].px2-input,
   .remote-finder input[type=password].px2-input,
   .remote-finder input[type=number].px2-input,
@@ -1084,6 +1130,9 @@
           padding: 0.4em 1em;
           width: 70%;
           border: 1px solid #999999; }
+        .remote-finder .px2-form-input-list ul.px2-form-input-list__ul li.px2-form-input-list__li p, .remote-finder .px2-form-input-list ul.px2-form-input-list__ul li.px2-form-input-list__li .px2-p {
+          margin-top: 0.2em;
+          margin-bottom: 0.2em; }
         .remote-finder .px2-form-input-list ul.px2-form-input-list__ul li.px2-form-input-list__li--required .px2-form-input-list__label::after {
           content: "*";
           color: #e11;
@@ -1385,15 +1434,6 @@
             color: #eee; }
           .remote-finder .px2-darkmode .px2-header__shoulder-menu > ul li.px2-header__shoulder-menu-group ul li a.current {
             color: #eee; }
-    .remote-finder .px2-darkmode .px2-modal {
-      background: rgba(223, 223, 223, 0.5); }
-      .remote-finder .px2-darkmode .px2-modal__close button {
-        border-color: #666;
-        background-color: #111;
-        color: #666; }
-      .remote-finder .px2-darkmode .px2-modal__dialog {
-        color: #ccc;
-        background-color: #242424; }
     .remote-finder .px2-darkmode .px2-btn {
       background-color: #242424;
       color: #ccc;
@@ -1470,6 +1510,45 @@
         box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
         .remote-finder .px2-darkmode .px2-btn--toggle-on[disabled]:focus, .remote-finder .px2-darkmode .px2-btn--toggle-on[disabled]:hover, .remote-finder .px2-darkmode .px2-btn--toggle-on[disabled]:active {
           box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
+    .remote-finder .px2-darkmode .px2-modal {
+      background: rgba(223, 223, 223, 0.5); }
+      .remote-finder .px2-darkmode .px2-modal__close button {
+        border-color: #999;
+        background-color: #111;
+        color: #999; }
+        .remote-finder .px2-darkmode .px2-modal__close button::before, .remote-finder .px2-darkmode .px2-modal__close button::after {
+          border-bottom: 1px solid #999; }
+        .remote-finder .px2-darkmode .px2-modal__close button:hover {
+          border: 1px solid #ccc;
+          background-color: #000; }
+          .remote-finder .px2-darkmode .px2-modal__close button:hover::before, .remote-finder .px2-darkmode .px2-modal__close button:hover::after {
+            border-bottom: 1px solid #ccc; }
+      .remote-finder .px2-darkmode .px2-modal__dialog {
+        color: #ccc;
+        background-color: #242424; }
+      .remote-finder .px2-darkmode .px2-modal__header {
+        border-bottom: 1px solid #999;
+        box-shadow: 0 5px 12px -5px rgba(255, 255, 255, 0.4); }
+    .remote-finder .px2-darkmode .px2-notice {
+      color: #91b4da;
+      background-color: #1f456e;
+      border: 1px solid #3c6794; }
+    .remote-finder .px2-darkmode .px2-notice.px2-notice--success {
+      color: #98c4a2;
+      background-color: #1b5c2a;
+      border-color: #458052; }
+    .remote-finder .px2-darkmode .px2-notice.px2-notice--warning {
+      color: #d6c9a3;
+      background-color: #68561c;
+      border-color: #948b6c; }
+    .remote-finder .px2-darkmode .px2-notice.px2-notice--danger {
+      color: #dfc7ca;
+      background-color: #5e1319;
+      border-color: #91595f; }
+    .remote-finder .px2-darkmode .px2-notice.px2-notice--info {
+      color: #bbe1e7;
+      background-color: #144b55;
+      border-color: #5b868d; }
     .remote-finder .px2-darkmode .px2-table {
       color: #ccc; }
       .remote-finder .px2-darkmode .px2-table th,
@@ -1955,3 +2034,320 @@
     padding: 3px;
     font-size: 11px;
     border-radius: 3px; }
+
+.px2-darkmode .remote-finder {
+  /**
+ * Header
+ */
+  /**
+ * Table
+ */ }
+  .px2-darkmode .remote-finder .px2-header {
+    color: #ccc; }
+    .px2-darkmode .remote-finder .px2-header__inner {
+      background-color: #222;
+      box-shadow: 0 5px 13px rgba(255, 100, 100, 0.1); }
+    .px2-darkmode .remote-finder .px2-header a {
+      color: #ccc; }
+      .px2-darkmode .remote-finder .px2-header a:hover {
+        color: #fff; }
+    .px2-darkmode .remote-finder .px2-header__px2logo a {
+      background-color: #222; }
+    .px2-darkmode .remote-finder .px2-header__id a:hover {
+      color: #fff; }
+    .px2-darkmode .remote-finder .px2-header__global-menu ul li a, .px2-darkmode .remote-finder .px2-header__global-menu ul li span {
+      color: #999; }
+      .px2-darkmode .remote-finder .px2-header__global-menu ul li a.current, .px2-darkmode .remote-finder .px2-header__global-menu ul li span.current {
+        border-bottom-color: rgba(0, 0, 0, 0.85); }
+    .px2-darkmode .remote-finder .px2-header__global-menu ul li.px2-header__global-menu-group > a::after {
+      border-color: #999;
+      border-top-color: transparent;
+      border-bottom-color: transparent; }
+    .px2-darkmode .remote-finder .px2-header__shoulder-menu > button {
+      background: #060606; }
+    .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul {
+      background-color: #555;
+      border-color: #222; }
+      .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li {
+        border-bottom-color: #333; }
+        .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li a {
+          color: #ccc;
+          background-color: #555; }
+          .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li a:hover {
+            background-color: #444;
+            color: #eee; }
+          .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li a.current {
+            color: #eee; }
+      .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li.px2-header__shoulder-menu-group > a::after {
+        border-color: #eee;
+        border-top-color: transparent;
+        border-bottom-color: transparent; }
+      .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li.px2-header__shoulder-menu-group ul li a {
+        background-color: #333;
+        color: #ddd; }
+        .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li.px2-header__shoulder-menu-group ul li a:hover {
+          background-color: #444;
+          color: #eee; }
+        .px2-darkmode .remote-finder .px2-header__shoulder-menu > ul li.px2-header__shoulder-menu-group ul li a.current {
+          color: #eee; }
+  .px2-darkmode .remote-finder .px2-btn {
+    background-color: #242424;
+    color: #ccc;
+    border: 3px solid #ccc;
+    box-shadow: 0 2px 0px rgba(255, 255, 255, 0.1); }
+    .px2-darkmode .remote-finder .px2-btn:focus, .px2-darkmode .remote-finder .px2-btn:hover {
+      color: #eee;
+      background-color: #222; }
+    .px2-darkmode .remote-finder .px2-btn:focus {
+      box-shadow: 0 0 0 0.2rem rgba(123, 230, 255, 0.25); }
+    .px2-darkmode .remote-finder .px2-btn:hover {
+      background-color: #292929; }
+    .px2-darkmode .remote-finder .px2-btn:active {
+      background-color: #ccc;
+      color: #242424;
+      box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.3); }
+  .px2-darkmode .remote-finder .px2-btn.px2-btn--primary {
+    border-color: #00a0e6;
+    background-color: #d9f1fb;
+    color: #00a0e6; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--primary:focus, .px2-darkmode .remote-finder .px2-btn.px2-btn--primary:hover {
+      background-color: #ccecfa; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--primary:hover {
+      background-color: #f5fbfe; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--primary:active {
+      background-color: #00a0e6;
+      color: #fff; }
+  .px2-darkmode .remote-finder .px2-btn.px2-btn--secondary {
+    border-color: #ccc;
+    background: #242424;
+    color: #ccc; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--secondary:focus, .px2-darkmode .remote-finder .px2-btn.px2-btn--secondary:hover {
+      color: #eee;
+      background-color: #222; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--secondary:hover {
+      background-color: #292929; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--secondary:active {
+      background-color: #ccc;
+      color: #242424; }
+  .px2-darkmode .remote-finder .px2-btn.px2-btn--danger {
+    border-color: #e86a60;
+    background-color: #fdf8f8;
+    color: #e86a60; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--danger:focus, .px2-darkmode .remote-finder .px2-btn.px2-btn--danger:hover {
+      background-color: #fce9e7; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--danger:hover {
+      background-color: #fae1df; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--danger:active {
+      background-color: #e86a60;
+      color: #fff; }
+  .px2-darkmode .remote-finder .px2-btn.px2-btn--download {
+    border-color: #4ad64d;
+    background-color: #f7fcf7;
+    color: #4ad64d; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--download:focus, .px2-darkmode .remote-finder .px2-btn.px2-btn--download:hover {
+      background-color: #e4f9e4; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--download:hover {
+      background-color: #dbf7db; }
+    .px2-darkmode .remote-finder .px2-btn.px2-btn--download:active {
+      background-color: #4ad64d;
+      color: #fff; }
+  .px2-darkmode .remote-finder .px2-btn[disabled] {
+    border-color: #444;
+    background-color: rgba(153, 153, 153, 0.05);
+    color: #444; }
+    .px2-darkmode .remote-finder .px2-btn[disabled]:focus, .px2-darkmode .remote-finder .px2-btn[disabled]:hover, .px2-darkmode .remote-finder .px2-btn[disabled]:active {
+      border-color: #444;
+      background-color: rgba(153, 153, 153, 0.05);
+      color: #444;
+      box-shadow: 0 2px 0px rgba(255, 255, 255, 0.1); }
+  .px2-darkmode .remote-finder .px2-btn--toggle-on {
+    box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
+    .px2-darkmode .remote-finder .px2-btn--toggle-on[disabled] {
+      box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
+      .px2-darkmode .remote-finder .px2-btn--toggle-on[disabled]:focus, .px2-darkmode .remote-finder .px2-btn--toggle-on[disabled]:hover, .px2-darkmode .remote-finder .px2-btn--toggle-on[disabled]:active {
+        box-shadow: inset 0 3px 15px rgba(255, 255, 255, 0.15); }
+  .px2-darkmode .remote-finder .px2-modal {
+    background: rgba(223, 223, 223, 0.5); }
+    .px2-darkmode .remote-finder .px2-modal__close button {
+      border-color: #999;
+      background-color: #111;
+      color: #999; }
+      .px2-darkmode .remote-finder .px2-modal__close button::before, .px2-darkmode .remote-finder .px2-modal__close button::after {
+        border-bottom: 1px solid #999; }
+      .px2-darkmode .remote-finder .px2-modal__close button:hover {
+        border: 1px solid #ccc;
+        background-color: #000; }
+        .px2-darkmode .remote-finder .px2-modal__close button:hover::before, .px2-darkmode .remote-finder .px2-modal__close button:hover::after {
+          border-bottom: 1px solid #ccc; }
+    .px2-darkmode .remote-finder .px2-modal__dialog {
+      color: #ccc;
+      background-color: #242424; }
+    .px2-darkmode .remote-finder .px2-modal__header {
+      border-bottom: 1px solid #999;
+      box-shadow: 0 5px 12px -5px rgba(255, 255, 255, 0.4); }
+  .px2-darkmode .remote-finder .px2-notice {
+    color: #91b4da;
+    background-color: #1f456e;
+    border: 1px solid #3c6794; }
+  .px2-darkmode .remote-finder .px2-notice.px2-notice--success {
+    color: #98c4a2;
+    background-color: #1b5c2a;
+    border-color: #458052; }
+  .px2-darkmode .remote-finder .px2-notice.px2-notice--warning {
+    color: #d6c9a3;
+    background-color: #68561c;
+    border-color: #948b6c; }
+  .px2-darkmode .remote-finder .px2-notice.px2-notice--danger {
+    color: #dfc7ca;
+    background-color: #5e1319;
+    border-color: #91595f; }
+  .px2-darkmode .remote-finder .px2-notice.px2-notice--info {
+    color: #bbe1e7;
+    background-color: #144b55;
+    border-color: #5b868d; }
+  .px2-darkmode .remote-finder .px2-table {
+    color: #ccc; }
+    .px2-darkmode .remote-finder .px2-table th,
+    .px2-darkmode .remote-finder .px2-table td {
+      border-color: #666;
+      background: #242424; }
+    .px2-darkmode .remote-finder .px2-table th {
+      background: #191919; }
+    .px2-darkmode .remote-finder .px2-table thead th,
+    .px2-darkmode .remote-finder .px2-table tfoot th {
+      background: #111; }
+    .px2-darkmode .remote-finder .px2-table thead td,
+    .px2-darkmode .remote-finder .px2-table tfoot td {
+      background: #111; }
+  .px2-darkmode .remote-finder input[type=text].px2-input,
+  .px2-darkmode .remote-finder input[type=password].px2-input,
+  .px2-darkmode .remote-finder input[type=number].px2-input,
+  .px2-darkmode .remote-finder input[type=search].px2-input,
+  .px2-darkmode .remote-finder input[type=tel].px2-input,
+  .px2-darkmode .remote-finder input[type=url].px2-input,
+  .px2-darkmode .remote-finder input[type=email].px2-input,
+  .px2-darkmode .remote-finder input[type=datetime].px2-input,
+  .px2-darkmode .remote-finder input[type=date].px2-input,
+  .px2-darkmode .remote-finder input[type=month].px2-input,
+  .px2-darkmode .remote-finder input[type=week].px2-input,
+  .px2-darkmode .remote-finder input[type=time].px2-input,
+  .px2-darkmode .remote-finder input[type=color].px2-input,
+  .px2-darkmode .remote-finder input[type=file].px2-input,
+  .px2-darkmode .remote-finder input[type=datetime-local].px2-input,
+  .px2-darkmode .remote-finder textarea.px2-input,
+  .px2-darkmode .remote-finder select.px2-input {
+    color: #ccc;
+    background-color: #242424;
+    border: 1px solid #555; }
+    .px2-darkmode .remote-finder input[type=text].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=password].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=number].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=search].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=tel].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=url].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=email].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=datetime].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=date].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=month].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=week].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=time].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=color].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=file].px2-input:focus,
+    .px2-darkmode .remote-finder input[type=datetime-local].px2-input:focus,
+    .px2-darkmode .remote-finder textarea.px2-input:focus,
+    .px2-darkmode .remote-finder select.px2-input:focus {
+      color: #f3f3f3;
+      background-color: #000;
+      border-color: #80bdff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+    .px2-darkmode .remote-finder input[type=text].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=password].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=number].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=search].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=tel].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=url].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=email].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=datetime].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=date].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=month].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=week].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=time].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=color].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=file].px2-input[readonly],
+    .px2-darkmode .remote-finder input[type=datetime-local].px2-input[readonly],
+    .px2-darkmode .remote-finder textarea.px2-input[readonly],
+    .px2-darkmode .remote-finder select.px2-input[readonly] {
+      color: #ccc;
+      background-color: #242424; }
+      .px2-darkmode .remote-finder input[type=text].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=password].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=number].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=search].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=tel].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=url].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=email].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=datetime].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=date].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=month].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=week].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=time].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=color].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=file].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder input[type=datetime-local].px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder textarea.px2-input[readonly]:focus,
+      .px2-darkmode .remote-finder select.px2-input[readonly]:focus {
+        border-color: #555;
+        box-shadow: none; }
+    .px2-darkmode .remote-finder input[type=text].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=password].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=number].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=search].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=tel].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=url].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=email].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=datetime].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=date].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=month].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=week].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=time].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=color].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=file].px2-input[disabled],
+    .px2-darkmode .remote-finder input[type=datetime-local].px2-input[disabled],
+    .px2-darkmode .remote-finder textarea.px2-input[disabled],
+    .px2-darkmode .remote-finder select.px2-input[disabled] {
+      color: #8e959c;
+      background-color: #333; }
+    .px2-darkmode .remote-finder input[type=text].px2-input--error,
+    .px2-darkmode .remote-finder input[type=password].px2-input--error,
+    .px2-darkmode .remote-finder input[type=number].px2-input--error,
+    .px2-darkmode .remote-finder input[type=search].px2-input--error,
+    .px2-darkmode .remote-finder input[type=tel].px2-input--error,
+    .px2-darkmode .remote-finder input[type=url].px2-input--error,
+    .px2-darkmode .remote-finder input[type=email].px2-input--error,
+    .px2-darkmode .remote-finder input[type=datetime].px2-input--error,
+    .px2-darkmode .remote-finder input[type=date].px2-input--error,
+    .px2-darkmode .remote-finder input[type=month].px2-input--error,
+    .px2-darkmode .remote-finder input[type=week].px2-input--error,
+    .px2-darkmode .remote-finder input[type=time].px2-input--error,
+    .px2-darkmode .remote-finder input[type=color].px2-input--error,
+    .px2-darkmode .remote-finder input[type=file].px2-input--error,
+    .px2-darkmode .remote-finder input[type=datetime-local].px2-input--error,
+    .px2-darkmode .remote-finder textarea.px2-input--error,
+    .px2-darkmode .remote-finder select.px2-input--error {
+      border-color: #721c24;
+      color: #721c24;
+      background-color: #f8d7da; }
+  .px2-darkmode .remote-finder .px2-input-group__text {
+    color: #ccc;
+    background-color: #333;
+    border: 1px solid #555; }
+  .px2-darkmode .remote-finder .px2-form-input-list {
+    color: #ccc; }
+    .px2-darkmode .remote-finder .px2-form-input-list ul.px2-form-input-list__ul {
+      border: 1px solid #666; }
+      .px2-darkmode .remote-finder .px2-form-input-list ul.px2-form-input-list__ul li.px2-form-input-list__li .px2-form-input-list__label {
+        background-color: #191919;
+        border: 1px solid #666; }
+      .px2-darkmode .remote-finder .px2-form-input-list ul.px2-form-input-list__ul li.px2-form-input-list__li .px2-form-input-list__input {
+        background-color: #242424;
+        border: 1px solid #666; }
