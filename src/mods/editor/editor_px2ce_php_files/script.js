@@ -169,49 +169,58 @@ window.contApp = new (function( main ){
 
 							// var testTimestamp = (new Date()).getTime();
 							var tmpFileName = '__tmp_'+utils79.md5( Date.now() )+'.json';
-							px.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(input) );
-							_pj.execPx2(
-								arg.page_path+'?PX=px2dthelper.px2ce.gpi&appMode=desktop&target_mode='+encodeURIComponent(arg.target_mode)+'&data_filename='+encodeURIComponent( tmpFileName ),
-								{
-									complete: function(rtn){
-										// console.log('--- returned(millisec)', (new Date()).getTime() - testTimestamp);
-										new Promise(function(rlv){rlv();})
-											.then(function(){ return new Promise(function(rlv, rjt){
-												try{
-													rtn = JSON.parse(rtn);
-												}catch(e){
-													console.error('Failed to parse JSON String -> ' + rtn);
-												}
-												rlv();
-											}); })
-											.then(function(){ return new Promise(function(rlv, rjt){
-												if( input.api == "broccoliBridge" && input.forBroccoli && input.forBroccoli.api == "getBootupInfomations" ){
-													// userStorageの情報を付加して返す。
-													rtn.userData = rtn.userData || {};
-													rtn.userData.modPaletteCondition = '{}';
-													try{
-														_pj.appdata.readCustomDataFile('broccoli-userstorage-modPaletteCondition', function(result){
-															rtn.userData.modPaletteCondition = result;
-															rlv();
-														});
-													}catch(e){
-														console.error(e);
+							px.fs.writeFile(
+								realpathDataDir+tmpFileName,
+								JSON.stringify(input),
+								function(err){
+									_pj.execPx2(
+										arg.page_path+'?PX=px2dthelper.px2ce.gpi&appMode=desktop&target_mode='+encodeURIComponent(arg.target_mode)+'&data_filename='+encodeURIComponent( tmpFileName ),
+										{
+											complete: function(rtn){
+												// console.log('--- returned(millisec)', (new Date()).getTime() - testTimestamp);
+												new Promise(function(rlv){rlv();})
+													.then(function(){ return new Promise(function(rlv, rjt){
+														try{
+															rtn = JSON.parse(rtn);
+														}catch(e){
+															console.error('Failed to parse JSON String -> ' + rtn);
+														}
 														rlv();
-													}
-													return;
-												}
-												rlv();
-											}); })
-											.then(function(){ return new Promise(function(rlv, rjt){
-												px.fs.unlinkSync( realpathDataDir+tmpFileName );
-												_pj.updateGitStatus(function(){});
-												rlv();
-											}); })
-											.then(function(){ return new Promise(function(rlv, rjt){
-												callback( rtn );
-											}); })
-										;
-									}
+													}); })
+													.then(function(){ return new Promise(function(rlv, rjt){
+														if( input.api == "broccoliBridge" && input.forBroccoli && input.forBroccoli.api == "getBootupInfomations" ){
+															// userStorageの情報を付加して返す。
+															rtn.userData = rtn.userData || {};
+															rtn.userData.modPaletteCondition = '{}';
+															try{
+																_pj.appdata.readCustomDataFile('broccoli-userstorage-modPaletteCondition', function(result){
+																	rtn.userData.modPaletteCondition = result;
+																	rlv();
+																});
+															}catch(e){
+																console.error(e);
+																rlv();
+															}
+															return;
+														}
+														rlv();
+													}); })
+													.then(function(){ return new Promise(function(rlv, rjt){
+														px.fs.unlink(
+															realpathDataDir+tmpFileName,
+															function(err){
+																rlv();
+															}
+														);
+														_pj.updateGitStatus(function(){});
+													}); })
+													.then(function(){ return new Promise(function(rlv, rjt){
+														callback( rtn );
+													}); })
+												;
+											}
+										}
+									);
 								}
 							);
 							return;
