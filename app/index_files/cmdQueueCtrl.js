@@ -1,8 +1,9 @@
 /**
  * Command Queue Control
  */
-module.exports = function(px, window){
+module.exports = function(main, window){
 	var _this = this;
+	var px = main;
 	var $ = window.jQuery;
 
 	// CmdQueue オブジェクト(Server Side) を生成する。
@@ -167,4 +168,36 @@ module.exports = function(px, window){
 			$mainTerminal.css({"display":"none"});
 		}, 300);
 	}
+
+
+
+	/**
+	 * コマンドをキューに登録
+	 *
+	 * cmdQueue のメソッドへのショートカット
+	 */
+	this.addQueueItem = function(cmdAry, options){
+		return this.client.addQueueItem(cmdAry, options);
+	}
+
+	/**
+	 * コマンドをキューに PXコマンドを 登録
+	 */
+	this.addQueuePxCmdItem = function(pxCmd, options){
+		const pj = main.getCurrentProject();
+		if( !pj ){
+			return false;
+		}
+		let cmdAry = [
+			'php',
+			main.path.resolve(pj.get('path'), pj.get('entry_script')),
+			'--command-php',
+			main.cmd('php'),
+			pxCmd,
+		];
+		console.info(cmdAry);
+
+		return this.client.addQueueItem(cmdAry, options);
+	}
+
 }

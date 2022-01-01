@@ -316,12 +316,8 @@ window.contApp = new (function(main, $){
 						}
 
 						// パブリッシュコマンドを発行する
-						main.commandQueue.client.addQueueItem(
-							[
-								'php',
-								main.path.resolve(_pj.get('path'), _pj.get('entry_script')),
-								'/?PX=publish.run&'+px2cmd_options
-							],
+						main.commandQueue.addQueuePxCmdItem(
+							'/?PX=publish.run&'+px2cmd_options,
 							{
 								'cdName': 'default',
 								'tags': [

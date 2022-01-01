@@ -7,12 +7,8 @@ window.cont_clearcache = function(btn){
 	$('.cont_console').text('');
 	var $msg = $('<div>');
 
-	main.commandQueue.client.addQueueItem(
-		[
-			'php',
-			main.path.resolve(pj.get('path'), pj.get('entry_script')),
-			'/?PX=clearcache'
-		],
+	main.commandQueue.addQueuePxCmdItem(
+		'/?PX=clearcache',
 		{
 			'cdName': 'default',
 			'tags': [
