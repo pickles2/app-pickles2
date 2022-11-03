@@ -76,7 +76,7 @@ new (function($, window){
 	this.mkdirp = _mkdirp;
 	var _glob = require('glob');
 	this.glob = _glob;
-	var _SearchInDir = require('node-search-in-directory');
+	var _SearchInDir = require('search-in-directory');
 	this.SearchInDir = _SearchInDir;
 
 	// versioning
