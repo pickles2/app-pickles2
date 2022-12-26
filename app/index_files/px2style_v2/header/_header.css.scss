@@ -1,0 +1,433 @@
+// Header
+//
+// アプリケーションヘッダー。
+//
+// Styleguide 8.0
+
+// Standard Header
+//
+// Markup:
+// <header class="px2-header">
+//     <div class="px2-header__inner">
+//         <div class="px2-header__px2logo">
+//             <a href="javascript:px2style.header.init({'current':''});"><img src="https://okuden-labo.com/images/5/a/3/d/d/5a3dd3a06d3d74537be8f8a82fd58140f62dfc45-150x150.png" alt="" /></a>
+//         </div>
+//         <div class="px2-header__block">
+//             <div class="px2-header__id">
+//                 <span>Pickles 2</span>
+//             </div>
+//             <div class="px2-header__global-menu">
+//                 <ul>
+//                     <li><a href="javascript:px2style.header.init({'current':''});" data-name="">HOME</a></li>
+//                     <li><a href="javascript:px2style.header.init({'current':'sitemap'});" data-name="sitemap">Sitemap</a></li>
+//                     <li><a href="javascript:px2style.header.init({'current':'theme'});" data-name="theme">Theme</a></li>
+//                     <li><a href="javascript:px2style.header.init({'current':'contents'});" data-name="contents">Contents</a></li>
+//                     <li><a href="javascript:;">Profile 1</a>
+//                         <ul>
+//                             <li><a href="javascript:px2style.header.init({'current':'profile1'});" data-name="profile1">Profile</a></li>
+//                             <li><a href="javascript:px2style.header.init({'current':'logout1'});" data-name="logout1">Logout</a></li>
+//                         </ul>
+//                     </li>
+//                     <li><a href="javascript:;">Profile 2</a>
+//                         <ul>
+//                             <li><a href="javascript:px2style.header.init({'current':'profile'2});" data-name="profile2">Profile</a></li>
+//                             <li><a href="javascript:px2style.header.init({'current':'logout2'});" data-name="logout2">Logout</a></li>
+//                         </ul>
+//                     </li>
+//                 </ul>
+//             </div>
+//         </div>
+//         <div class="px2-header__shoulder-menu">
+//             <button><span class="px2-header__hamburger"></span></button>
+//             <ul>
+//                 <li><a href="javascript:px2style.header.init({'current':'menu-a'});" data-name="menu-a">Menu A</a></li>
+//                 <li><a href="javascript:px2style.header.init({'current':'menu-b'});" data-name="menu-b">Menu B</a></li>
+//                 <li><a href="javascript:px2style.header.init({'current':'menu-c'});" data-name="menu-c">Menu C</a></li>
+//                 <li><a href="javascript:;">Group A</a>
+//                     <ul>
+//                         <li><a href="javascript:px2style.header.init({'current':'menu-a-a'});" data-name="menu-a-a">Menu A-A</a></li>
+//                         <li><a href="javascript:px2style.header.init({'current':'menu-a-b'});" data-name="menu-a-b">Menu A-B</a></li>
+//                         <li><a href="javascript:px2style.header.init({'current':'menu-a-c'});" data-name="menu-a-c">Menu A-C</a></li>
+//                     </ul>
+//                 </li>
+//                 <li><a href="javascript:;">Group B</a>
+//                     <ul>
+//                         <li><a href="javascript:px2style.header.init({'current':'menu-b-a'});" data-name="menu-b-a">Menu B-A</a></li>
+//                         <li><a href="javascript:px2style.header.init({'current':'menu-b-b'});" data-name="menu-b-b">Menu B-B</a></li>
+//                         <li><a href="javascript:px2style.header.init({'current':'menu-b-c'});" data-name="menu-b-c">Menu B-C</a></li>
+//                     </ul>
+//                 </li>
+//                 <li><a href="javascript:px2style.header.init({'current':'quit'});" data-name="quit">Quit</a></li>
+//             </ul>
+//         </div>
+//     </div>
+// </header>
+// <div class="contents">
+//     <h1>Header</h1>
+//     <p>Paragraph</p>
+//     <p>Do <a href="javascript: px2style.header.init();">px2style.header.init()</a> first for toppage.</p>
+//     <p>Do <a href="javascript: px2style.header.init({'current':'sitemap'});">px2style.header.init({'current':appName})</a> first for other pages.</p>
+// </div>
+//
+// Styleguide 8.1
+$px2-main-color: #000;
+$px2-font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;;
+.px2-header{
+	height: 45px;
+	font-family: $px2-font-family;
+
+	&__inner{
+		display: flex;
+		justify-content: space-between;
+		background-color: #fff;
+		padding: 0; margin:0;
+		position: fixed;
+		top: 0; left: 0;
+		width: 100%;
+		min-height: 10px;
+		z-index: 100;
+		border-bottom: 3px solid $px2-main-color; // fallback
+		border-bottom: 3px solid var(--px2-main-color, $px2-main-color);
+		box-shadow: 0 5px 13px rgba(0, 0, 0, 0.1);
+		color: #666;
+		line-height: 1;
+		box-sizing: border-box;
+		border-bottom-color: $px2-main-color; // fallback
+		border-bottom-color: var(--px2-main-color, $px2-main-color);
+		color: $px2-main-color; // fallback
+		color: var(--px2-main-color, $px2-main-color);
+	}
+
+	a{
+		color: #333;
+		text-decoration: underline;
+		&:hover{
+			color: #000;
+			text-decoration: none;
+		}
+	}
+
+	// LOGO
+	&__px2logo{
+		transition: min-width 0.3s ease-out 0s , width 0.3s ease-out 0s , height 0.3s ease-out 0s;
+		position: relative;
+		left: 0px; top: 0px;
+		padding: 6px;
+		margin-left: 6px;
+		width: 45px; height: auto;
+		box-sizing: border-box;
+		a{
+			display: inline-block;
+			position: absolute;
+			padding: 6px;
+			background-color: #fff;
+			left: 0; top: 0;
+			transition: min-width 0.3s ease-out 0s , width 0.3s ease-out 0s , height 0.3s ease-out 0s;
+			width: 45px; height: 45px;
+			box-sizing: border-box;
+
+			img, svg{
+				width: 100%; height: 100%;
+			}
+		}
+	} // px2logo
+
+	&__block{
+		display: flex;
+		flex-wrap: wrap;
+		flex-grow: 100;
+		justify-content: space-between;
+	}
+
+	&__id{
+		width: auto;
+		margin: 0;
+		padding: 10px 0 0 0;
+		font-size: 13px;
+		transition: opacity 0.5s ease 0;
+		*{
+			color: $px2-main-color; // fallback
+			color: var(--px2-main-color, $px2-main-color);
+			margin: 0 0.5em;
+			display: inline-block;
+			text-shadow: none;
+			font-weight: normal;
+		}
+		a{
+			color: $px2-main-color; // fallback
+			color: var(--px2-main-color, $px2-main-color);
+			text-decoration: none;
+			&:hover{
+				color: #000;
+				text-decoration: none;
+			}
+		}
+	} // id
+
+	// グローバルメニュー
+	&__global-menu{
+		padding: 0;
+		margin: 0;
+		margin-right: 35px;
+		margin-bottom: -3px;
+		line-height: 1;
+		min-height: calc(12px + 5px + 1em);
+
+		ul{
+			display:flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			margin:0; padding:0;
+
+			li{
+				margin: 0 1px 0 1px;
+				padding: 0;
+				list-style-type: none;
+				font-size: 13px;
+				position: relative;
+
+				a,span{
+					display: block;
+					margin:0;
+					padding:12px 2em 5px;
+					color: #666;
+					border: none;
+					font-weight: normal;
+					text-decoration: none;
+					border-bottom: 3px solid transparent;
+
+					&:hover{
+						color: $px2-main-color; // fallback
+						color: var(--px2-main-color, $px2-main-color);
+					}
+					&.current{
+						font-weight: bold;
+						border-bottom-color: rgba(255, 255, 255, 0.85);
+						color: $px2-main-color; // fallback
+						color: var(--px2-main-color, $px2-main-color);
+						padding-left: 1em;
+						&:before{
+							content: ' ';
+							width: 0;
+							height: 0;
+							display: inline-block;
+							margin-right: 0.5em;
+							border-width: 0.3em 0 0.3em 0.5em;
+							border-style: solid;
+							border-color: $px2-main-color; // fallback
+							border-color: var(--px2-main-color, $px2-main-color);
+							border-top-color: transparent;
+							border-bottom-color: transparent;
+						}
+					}
+				}
+				span{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+			ul{
+				display: none;
+				position: absolute;
+				right: 0; top: 100%;
+			}
+
+			li.px2-header__global-menu-group{
+				>a::after{
+					content:' ';
+					width:0;
+					height:0;
+					display: inline-block;
+					margin-left: 0.3em;
+					border-width:0.3em 0 0.3em 0.5em;
+					border-style:solid;
+					border-color:#666;
+					border-top-color:transparent;
+					border-bottom-color:transparent;
+					transition: transform 0.2s ease-in;
+					transform: rotate(90deg);
+				}
+				ul{
+					padding: 0;
+					background-color: #999;
+
+					li{
+						list-style-type: none;
+						a{
+							font-weight: normal;
+							padding: 0.8em 2em;
+							color: #eee;
+							background-color: #333;
+							text-decoration: none;
+							&:hover{
+								background-color: #666;
+								color: #fff;
+							}
+							&.current{
+								font-weight: bold;
+								padding: 0.8em 2em;
+								background-color: $px2-main-color; // fallback
+								background-color: var(--px2-main-color, $px2-main-color);
+								color: #fff;
+								border: none;
+								&:before{
+									content:none;
+								}
+							}
+						}
+					}
+				}
+			}
+			li.px2-header__global-menu-group-opened {
+				z-index: 10000;
+			}
+			li.px2-header__global-menu-group-opened > a::after{
+				transform: rotate(90deg);
+			}
+		}
+	} // global-menu
+
+	// ハンバーガーメニュー
+	&__shoulder-menu{
+		position: fixed; top: 0; right: 0;
+		padding: 0; margin: 0;
+		overflow: hidden;
+		>button{
+			background: #f9f9f9;
+			border: none;
+			border-radius: 0;
+			border-left: 1px solid $px2-main-color; // fallback
+			border-left: 1px solid var(--px2-main-color, $px2-main-color);
+			position: absolute; top:0; right:0;
+			height: 30px;
+			width: 30px;
+			box-sizing: border-box;
+			padding: 0.5em;
+			cursor: pointer;
+		}
+		>ul{
+			position: absolute;
+			top: 30px; right: 0;
+			display: none;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			background-color: #333;
+			border: 1px solid #aaa;
+			overflow: auto;
+			width:280px;
+			max-width:100%;
+			opacity: 0.95;
+
+			li{
+				margin: 0 0 1px 0;
+				border-bottom: 1px solid #555;
+				font-size: 13px;
+				&:last-child{
+					border: none;
+				}
+				a{
+					display:block;
+					font-weight: normal;
+					padding: 0.8em 2em;
+					color: #eee;
+					background-color: #333;
+					text-decoration: none;
+					&:hover{
+						background-color: #444;
+						color: #fff;
+					}
+					&.current{
+						font-weight: bold;
+						background-color: $px2-main-color; // fallback
+						background-color: var(--px2-main-color, $px2-main-color);
+						color: #fff;
+					}
+				}
+			}
+			li.px2-header__shoulder-menu-group{
+				>a::after{
+					content:' ';
+					width:0;
+					height:0;
+					display: inline-block;
+					margin-left: 1em;
+					border-width:0.3em 0 0.3em 0.5em;
+					border-style:solid;
+					border-color:#eee;
+					border-top-color:transparent;
+					border-bottom-color:transparent;
+					transition: transform 0.2s ease-in;
+				}
+				ul{
+					padding: 0 0 0 15px;
+					margin: 0 0 0 0;
+					display:none;
+					li{
+						list-style-type: none;
+						a{
+							background-color: #555;
+							color: #ddd;
+							&:hover{
+								background-color: #666;
+								color: #fff;
+							}
+							&.current{
+								font-weight: bold;
+								background-color: $px2-main-color; // fallback
+								background-color: var(--px2-main-color, $px2-main-color);
+								color: #fff;
+							}
+						}
+					}
+				}
+			}
+			li.px2-header__shoulder-menu-group-opened > a::after{
+				transform: rotate(90deg);
+			}
+			>li:last-child{
+				margin-bottom: 30px;
+			}
+		}
+	} // shoulder-menu
+
+	// ハンバーガーメニューアイコン
+	&__hamburger,
+	&__hamburger:before,
+	&__hamburger:after {
+		display: block;
+		position: absolute;
+		height: 2px;
+		width: calc(100% - 1em);
+		border-radius: 1px;
+		margin: 0 auto;
+		background: $px2-main-color; // fallback
+		background: var(--px2-main-color, $px2-main-color);
+		content: '';
+	}
+	&__hamburger:before {
+		bottom: -6px;
+		width: 100%;
+	}
+	&__hamburger:after {
+		bottom: 6px;
+		width: 100%;
+	}
+
+	// Small Screen
+	.px2-header__shoulder-global-menu{
+		display: none;
+	}
+	@media all and (max-width: 640px){
+		&__global-menu ul{
+			display: none;
+		}
+		.px2-header__shoulder-global-menu{
+			display: block;
+		}
+		.px2-header__shoulder-global-menu--last{
+			border-bottom: 5px solid #aaa;
+		}
+	}
+
+}
