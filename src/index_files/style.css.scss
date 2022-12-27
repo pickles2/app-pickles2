@@ -179,5 +179,6 @@ body{
 // CmdQueue Terminal
 @import "./style.css.ignore/_commandQueue.css.scss";
 
-// px2style v2.x: Header
-@import "../../app/index_files/px2style_v2/header/_header.css.scss";
+// px2style v2.x
+@import "../common/styles/_css/_px2style_v2/_header/_header.css.scss";
+@import "../common/styles/_css/_px2style_v2/_utils/_utils.css.scss";

@@ -1,0 +1,105 @@
+// Utilities
+//
+// 各種ユーティリティ。
+//
+// Styleguide 9.0
+
+// Editor Type Badge
+//
+// 編集モードを表示します。
+//
+// Markup:
+// <span class="px2-editor-type px2-editor-type--not-exists"></span>
+// <span class="px2-editor-type px2-editor-type--page-not-exists"></span>
+// <span class="px2-editor-type px2-editor-type--alias"></span>
+// <span class="px2-editor-type px2-editor-type--html"></span>
+// <span class="px2-editor-type px2-editor-type--html-gui"></span>
+// <span class="px2-editor-type px2-editor-type--txt"></span>
+// <span class="px2-editor-type px2-editor-type--md"></span>
+// <span class="px2-editor-type px2-editor-type--jade"></span>
+// <p><code>.px2-editor-type--fullwidth</code> を付加して最大幅にできます。</p>
+// <span class="px2-editor-type px2-editor-type--html-gui px2-editor-type--fullwidth"></span>
+//
+// Styleguide 9.1
+@mixin px2-editor-type{
+	display: inline-block;
+	font-size: 12px;
+	font-family: sans-serif;
+	line-height: 1;
+	padding: 0.4em 1em;
+	text-align: center;
+	color: #fff;
+}
+.px2-editor-type{
+	@include px2-editor-type;
+
+	&__html, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--html{
+		@include px2-editor-type;
+		background-color: #4a8a98;
+		&:before{
+			content: "HTML";
+		}
+	}
+	&__html-gui, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--html-gui{
+		@include px2-editor-type;
+		background-color: #9f5b75;
+		&:before{
+			content: "Block"; // 以前は GUI と表記していました。2021-08-01 改称
+		}
+	}
+	&__txt, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--txt{
+		@include px2-editor-type;
+		background-color: #999;
+		&:before{
+			content: "TEXT";
+		}
+	}
+	&__md, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--md{
+		@include px2-editor-type;
+		background-color: #ae9b59;
+		&:before{
+			content: "Markdown";
+		}
+	}
+	&__jade, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--jade{
+		@include px2-editor-type;
+		background-color: #999;
+		&:before{
+			content: "Jade";
+		}
+	}
+	&__not-exists, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--not-exists{
+		@include px2-editor-type;
+		background-color: #c3c3c3;
+		&:before{
+			content: "未作成";
+		}
+	}
+	&__page-not-exists, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--page-not-exists{
+		@include px2-editor-type;
+		background-color: #c3c3c3;
+		&:before{
+			content: "ページ未作成";
+		}
+	}
+	&__alias, // <- deprecated (古い書き方ですが、後方互換のために残します)
+	&--alias{
+		@include px2-editor-type;
+		background-color: #c3c3c3;
+		&:before{
+			content: "ALIAS";
+		}
+	}
+	&--fullwidth{
+		width: auto;
+		display: block;
+		float:none;
+	}
+}

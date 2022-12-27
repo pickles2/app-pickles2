@@ -60,7 +60,7 @@ module.exports = function(contApp, main, $){
 					+ status.notStaged.untracked.length;
 				$elm.append( $('<div>').text('branch: ').append( $select ) );
 				$elm.append( $('<div>').text('Uncommited changes: '+(changes)) );
-				$elm.append( $('<div>').append( $('<a class="px2-link px2-link--burette">')
+				$elm.append( $('<div>').append( $('<a class="px2-a">')
 					.attr({
 						'href': 'javascript:main.subapp(\'fncs/git/index.html\');'
 					})
