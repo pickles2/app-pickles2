@@ -62,7 +62,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^5.5.0",
     "nw": "0.53.1-sdk",
-    "nw-builder": "^3.5.7",
+    "nw-builder": "3.5.7",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-stream": "^5.2.1"

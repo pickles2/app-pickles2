@@ -67,7 +67,7 @@ sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= npm install --only=production";
 npm install --only=production;
 
 sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= npm install nw-builder";
-npm install nw-builder;
+npm install nw-builder@3.5.7;
 
 if [ $APPLE_IDENTITY ]; then
     sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= Saving Apple IDENTITY";
