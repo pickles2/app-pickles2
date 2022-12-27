@@ -19,7 +19,7 @@
     "cheerio": "^0.22.0",
     "cmd-queue": "file:submodules/node-cmd-queue",
     "csv": "^2.0.0",
-    "ejs": "^2.6.2",
+    "ejs": "^3.1.7",
     "express": "^4.17.3",
     "express-pickles2": "file:submodules/node-express-pickles2",
     "express-queue": "0.0.12",
