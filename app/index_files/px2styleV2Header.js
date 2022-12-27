@@ -1,9 +1,7 @@
 /**
- * header.js
+ * px2styleV2Header.js
  */
-module.exports = function(){
-	var $ = require('jquery');
-	var _this = this;
+(function(){
 	var $header,
 		$globalMenu,
 		$globalMenuUl,
@@ -12,17 +10,22 @@ module.exports = function(){
 	var options = {};
 	var Header = function(){};
 
-	module.exports.prototype.header = new Header();
-	window.addEventListener('resize', function(){
-		if(!$header){return;}
-		_this.init(options);
-	});
-	window.addEventListener('click', function(){
-		if(!$header){return;}
-		closeDropdownMenus();
-	});
-
 	Header.prototype.init = function(_options){
+		var _this = this;
+
+		$(window)
+			.off('resize.px2-header')
+			.on('resize.px2-header', function(){
+				if(!$header){return;}
+				_this.init(options);
+			})
+			.off('click.px2-header')
+			.on('click.px2-header', function(){
+				if(!$header){return;}
+				_this.init(options);
+			});
+
+
 		options = _options || {};
 		options.current = options.current || '';
 		$header = $('.px2-header__inner');
@@ -77,9 +80,10 @@ module.exports = function(){
 		);
 		$shoulderMenu.find('button')
 			.off()
-			.on('click', function(e){
+			.on('click.px2-header', function(e){
 				e.stopPropagation();
 				closeDropdownMenus();
+
 				if( $shoulderMenuUl.css('display') == 'block' ){
 					$shoulderMenuUl.hide();
 					$shoulderMenu
@@ -101,6 +105,7 @@ module.exports = function(){
 				}
 			})
 		;
+
 
 
 
@@ -168,10 +173,12 @@ module.exports = function(){
 	}
 
 	/**
-	 * ドロップダウンメニューを全て閉じる
-	 */
+	* ドロップダウンメニューを全て閉じる
+	*/
 	function closeDropdownMenus(){
 		$globalMenuUl.find('li').removeClass('px2-header__global-menu-group-opened');
 		$globalMenuUl.find('ul').hide();
 	}
-}
+
+	window.px2styleV2Header = new Header();
+})();

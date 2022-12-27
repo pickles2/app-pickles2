@@ -171,12 +171,6 @@ new (function($, window){
 	// Subwindows
 	var subWindows = [];
 
-	// px2style v2.x: header
-	var Px2StyleV2Header = require('./index_files/px2style_v2/header/_header.js');
-	var px2styleV2Header = new Px2StyleV2Header();
-
-console.log('=-=-=-=-= px2styleV2Header:', px2styleV2Header);
-
 	/**
 	 * アプリケーションの初期化
 	 */
@@ -443,7 +437,7 @@ console.log('=-=-=-=-= px2styleV2Header:', px2styleV2Header);
 				function(it1){
 					// HTMLコードを配置
 					$('body').html( document.getElementById('template-outer-frame').innerHTML );
-					px2styleV2Header.header.init({"current":""});
+					px2styleV2Header.init({"current":""});
 					it1.next();
 				},
 				function(it1){
@@ -1061,7 +1055,7 @@ console.log('=-=-=-=-= px2styleV2Header:', px2styleV2Header);
 		}
 
 		if( appName ){
-			px2styleV2Header.header.init({"current":appName});
+			px2styleV2Header.init({"current":appName});
 			this.loadProject(function(){ // プロジェクトオブジェクトをリロードする。
 				var projectStatus = _pj.status();
 				// console.log(projectStatus);
@@ -1095,7 +1089,7 @@ console.log('=-=-=-=-= px2styleV2Header:', px2styleV2Header);
 
 		}else{
 			// プロジェクト選択画面を描画
-			px2styleV2Header.header.init({"current":""});
+			px2styleV2Header.init({"current":""});
 			$cont.html( $('script#template-selectProject-page').html() );
 			$cont.find('.cont_top_footer')
 				.html('')
@@ -1308,7 +1302,7 @@ console.log('=-=-=-=-= px2styleV2Header:', px2styleV2Header);
 				'height': $contents.innerHeight() - 0
 			})
 		;
-		px2styleV2Header.header.init({"current":_current_app});
+		px2styleV2Header.init({"current":_current_app});
 	}
 
 	/**
