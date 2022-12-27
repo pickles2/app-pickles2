@@ -48,7 +48,7 @@ function writeLog(row){
 	console.log(row);
 }
 
-if( packageJson.version.match(new RegExp('\\+(?:[a-zA-Z0-9\\_\\-\\.]+\\.)?dev$')) ){
+if( packageJson.version.match(/\+(?:[a-zA-Z0-9\_\-\.]+\.)?dev$/) ){
 	isProductionMode = false;
 }
 if( !isProductionMode ){
@@ -58,12 +58,21 @@ if( !isProductionMode ){
 	if( packageJson.devManifestUrl ){
 		packageJson.manifestUrl = packageJson.devManifestUrl;
 	}
+
 	// 一時的なバージョン番号を付与した package.json を作成し、
 	// もとのファイルを リネームしてとっておく。
 	// ビルドが終わった後に元に戻す。
-	require('fs').renameSync('./package.json', './package.json.orig');
-	require('fs').writeFileSync('./package.json', JSON.stringify(packageJson, null, 4));
+	fs.renameSync('./package.json', './package.json.orig');
+	fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 4));
 
+}else if( utils79.is_file( './package.json' ) && utils79.is_file( './package.json.orig' ) ){
+	packageJson = require('../package.json');
+	isProductionMode = false;
+	appName = packageJson.name;
+	versionSign = packageJson.version;
+}
+
+if( !isProductionMode ){
 	// 開発プレビュー版用の manifest ファイルを準備
 	if( packageJson.manifestUrl ){
 		devManifestInfo = {};
@@ -79,7 +88,6 @@ if( !isProductionMode ){
 		}
 	}
 }
-
 
 console.log('== build "'+appName+'" v'+versionSign+' ==');
 if( !isProductionMode ){
@@ -222,10 +230,10 @@ nw.on('log',  writeLog);
 // Build returns a promise
 nw.build().then(function () {
 
-	if( require('fs').existsSync('./package.json.orig') ){
+	if( fs.existsSync('./package.json.orig') ){
 		// 一時的なバージョン番号を付与した package.json を削除し、
 		// もとのファイルに戻す。
-		require('fs').renameSync('./package.json.orig', './package.json');
+		fs.renameSync('./package.json.orig', './package.json');
 	}
 
 	writeLog('all build done!');
@@ -352,7 +360,7 @@ nw.build().then(function () {
 			function(itPj, param){
 				if( !isProductionMode && devManifestInfo ){
 					// manifest json を出力
-					require('fs').writeFileSync(
+					fs.writeFileSync(
 						__dirname + '/dist/' + devManifestInfo.manifestFilename,
 						JSON.stringify(devManifestInfo.manifest, null, 4)
 					);
