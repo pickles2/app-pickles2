@@ -3,6 +3,12 @@ $px2-font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragin
 $text-color: #333;
 $background-color: #f9f9f9;
 
+:root {
+  --px2-main-color: #00a0e6;
+  --px2-text-color: #333;
+  --px2-background-color: #f9f9f9;
+}
+
 html,
 body {
   font-size: medium;
