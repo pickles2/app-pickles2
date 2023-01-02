@@ -52,20 +52,20 @@
     "zip-folder": "^1.0.0"
   },
   "devDependencies": {
-    "file-loader": "^4.2.0",
+    "file-loader": "^6.2.0",
     "gulp": "^4.0.2",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.1",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^4.0.2",
-    "html-loader": "^0.5.5",
+    "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "nw": "0.53.1-sdk",
     "nw-builder": "^3.5.7",
-    "url-loader": "^2.1.0",
-    "webpack": "^4.39.2",
-    "webpack-stream": "^5.2.1"
+    "url-loader": "^4.1.1",
+    "webpack": "^5.75.0",
+    "webpack-stream": "^7.0.0"
   },
   "extra": {
     "network": {
