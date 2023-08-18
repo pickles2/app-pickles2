@@ -1,118 +1,119 @@
 {
-  "name": "Pickles2",
-  "version": "2.0.0-beta.30+dev",
-  "description": "",
-  "private": true,
-  "main": "app/index.html",
-  "scripts": {
-    "preinstall": "git submodule update --init --recursive --force",
-    "start": "nw",
-    "build": "node ./build/build.js"
-  },
-  "author": "Tomoya Koyanagi",
-  "license": "MIT",
-  "dependencies": {
-    "broccoli-field-table": "^0.1.1",
-    "broccoli-html-editor": "^0.3.15",
-    "broccoli-processor": "file:submodules/node-broccoli-processor",
-    "broccoli-styleguide-generator": "file:submodules/node-broccoli-styleguide-generator",
-    "cheerio": "^0.22.0",
-    "cmd-queue": "file:submodules/node-cmd-queue",
-    "csv": "^2.0.0",
-    "ejs": "^3.1.7",
-    "express": "^4.17.3",
-    "express-pickles2": "file:submodules/node-express-pickles2",
-    "express-queue": "0.0.12",
-    "file-stream-rotator": "0.0.7",
-    "fs-extra": "^0.24.0",
-    "gitparse79": "file:submodules/node-git-parser",
-    "glob": "^5.0.10",
-    "iterate79": "^1.1.0",
-    "jquery": "^3.6.0",
-    "langbank": "0.0.2",
-    "marked": "^0.7.0",
-    "mime": "^2.4.4",
-    "mkdirp": "^0.5.1",
-    "morgan": "^1.7.0",
-    "search-in-directory": "https://github.com/tomk79/node-search-in-directory.git#develop",
-    "node-webkit-updater": "^0.3.3",
-    "phpjs": "^1.3.2",
-    "pickles2-contents-editor": "https://github.com/pickles2/node-pickles2-contents-editor.git#develop",
-    "pickles2-module-editor": "https://github.com/pickles2/node-pickles2-module-editor.git#develop",
-    "px2agent": "https://github.com/pickles2/node-px2agent.git#develop",
-    "px2dt-health-check": "file:submodules/node-px2dt-health-check",
-    "px2dt-localdata-access": "file:submodules/node-px2dt-localdata-access",
-    "px2style": "file:submodules/px2style",
-    "remote-finder": "file:submodules/node-remote-finder",
-    "semver": "^5.3.0",
-    "socket.io": "^4.5.4",
-    "twig": "^0.8.2",
-    "url-parse": "^1.5.9",
-    "utils79": "file:submodules/node-utils79",
-    "zip-folder": "^1.0.0"
-  },
-  "devDependencies": {
-    "file-loader": "^4.2.0",
-    "gulp": "^4.0.2",
-    "gulp-browserify": "^0.5.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^4.0.2",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^5.5.0",
-    "nw": "0.53.1-sdk",
-    "nw-builder": "3.5.7",
-    "url-loader": "^2.1.0",
-    "webpack": "^4.39.2",
-    "webpack-stream": "^5.2.1"
-  },
-  "extra": {
-    "network": {
-      "preview": {
-        "port": 58080
-      },
-      "appserver": {
-        "port": 58081
-      }
+    "name": "Pickles2",
+    "version": "2.0.0-beta.30+dev",
+    "description": "",
+    "private": true,
+    "main": "app/index.html",
+    "scripts": {
+        "preinstall": "git submodule update --init --recursive --force",
+        "start": "nw",
+        "build": "node ./build/build.js"
     },
-    "dataDirName": ".pickles2desktoptool",
-    "colors": {
-      "defaultKeyColor": "#00a0e6"
+    "author": "Tomoya Koyanagi",
+    "license": "MIT",
+    "dependencies": {
+        "broccoli-field-table": "^0.1.2",
+        "broccoli-html-editor": "^1.0.7",
+        "broccoli-processor": "github:broccoli-html-editor/node-broccoli-processor#develop",
+        "broccoli-styleguide-generator": "github:broccoli-html-editor/node-broccoli-styleguide-generator#develop",
+        "cheerio": "^0.22.0",
+        "cmd-queue": "github:tomk79/node-cmd-queue#develop",
+        "csv": "^2.0.0",
+        "ejs": "^3.1.7",
+        "express": "^4.17.3",
+        "express-pickles2": "github:tomk79/node-express-pickles2#develop",
+        "express-queue": "0.0.12",
+        "file-stream-rotator": "0.0.7",
+        "fs-extra": "^0.24.0",
+        "gitparse79": "github:tomk79/node-git-parser#develop",
+        "glob": "^5.0.10",
+        "iterate79": "^1.1.0",
+        "jquery": "^3.6.0",
+        "langbank": "0.0.2",
+        "marked": "^0.7.0",
+        "mime": "^2.4.4",
+        "mkdirp": "^0.5.1",
+        "morgan": "^1.7.0",
+        "node-webkit-updater": "^0.3.3",
+        "phpjs": "^1.3.2",
+        "pickles2-contents-editor": "github:pickles2/node-pickles2-contents-editor#develop",
+        "pickles2-module-editor": "github:pickles2/node-pickles2-module-editor#develop",
+        "px2agent": "github:pickles2/node-px2agent#develop",
+        "px2dt-health-check": "github:tomk79/node-px2dt-health-check#develop",
+        "px2dt-localdata-access": "github:pickles2/node-px2dt-localdata-access#develop",
+        "px2style": "github:pickles2/px2style#develop",
+        "remote-finder": "github:tomk79/node-remote-finder#develop",
+        "search-in-directory": "github:tomk79/node-search-in-directory#develop",
+        "semver": "^5.3.0",
+        "socket.io": "^4.5.4",
+        "twig": "^0.8.2",
+        "url-parse": "^1.5.9",
+        "utils79": "github:tomk79/node-utils79#develop",
+        "zip-folder": "^1.0.0"
     },
-    "forum": {
-      "url": "https://github.com/pickles2/app-pickles2/issues",
-      "title": "GitHub issue"
+    "devDependencies": {
+        "file-loader": "^6.2.0",
+        "gulp": "^4.0.2",
+        "gulp-browserify": "^0.5.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-plumber": "^1.1.0",
+        "gulp-rename": "^1.2.2",
+        "gulp-sass": "^5.1.0",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^5.5.0",
+        "laravel-mix": "^6.0.48",
+        "nw": "0.79.0-sdk",
+        "nw-builder": "4.3.9",
+        "url-loader": "^4.1.1",
+        "webpack": "^5.88.2",
+        "webpack-stream": "^7.0.0"
     },
-    "credit": "(C)Pickles Project."
-  },
-  "manifestUrl": "https://pickles2.pxt.jp/release/app/Pickles2/package.json",
-  "devManifestUrl": "https://pickles2.pxt.jp/release/app_dev/Pickles2/package.json",
-  "window": {
-    "title": "Pickles 2",
-    "toolbar": false,
-    "frame": true,
-    "width": 340,
-    "height": 420,
-    "fullscreen": false,
-    "icon": "app/common/images/appicon.png",
-    "position": "center"
-  },
-  "platformOverrides": {
-    "win": {
-      "window": {
-        "toolbar": false
-      }
+    "extra": {
+        "network": {
+            "preview": {
+                "port": 58080
+            },
+            "appserver": {
+                "port": 58081
+            }
+        },
+        "dataDirName": ".pickles2desktoptool",
+        "colors": {
+            "defaultKeyColor": "#00a0e6"
+        },
+        "forum": {
+            "url": "https://github.com/pickles2/app-pickles2/issues",
+            "title": "GitHub issue"
+        },
+        "credit": "(C)Pickles Project."
     },
-    "osx": {
-      "window": {
-        "toolbar": false
-      }
+    "manifestUrl": "https://pickles2.pxt.jp/release/app/Pickles2/package.json",
+    "devManifestUrl": "https://pickles2.pxt.jp/release/app_dev/Pickles2/package.json",
+    "window": {
+        "title": "Pickles 2",
+        "toolbar": false,
+        "frame": true,
+        "width": 340,
+        "height": 420,
+        "fullscreen": false,
+        "icon": "app/common/images/appicon.png",
+        "position": "center"
     },
-    "linux": {
-      "window": {
-        "toolbar": false
-      }
+    "platformOverrides": {
+        "win": {
+            "window": {
+                "toolbar": false
+            }
+        },
+        "osx": {
+            "window": {
+                "toolbar": false
+            }
+        },
+        "linux": {
+            "window": {
+                "toolbar": false
+            }
+        }
     }
-  }
 }
