@@ -63,11 +63,11 @@ git submodule update --init --recursive --force;
 sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= composer install --no-dev";
 composer install --no-dev;
 
-sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= npm install --only=production";
-npm install --only=production;
+sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= npm ci --only=production";
+npm ci --only=production;
 
 sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= npm install nw-builder";
-npm install nw-builder@3.5.7;
+npm install nw-builder@4.3.9;
 
 if [ $APPLE_IDENTITY ]; then
     sleep 1s; echo ""; echo "=-=-=-=-=-=-=-=-=-= Saving Apple IDENTITY";
