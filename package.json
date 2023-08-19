@@ -19,6 +19,7 @@
     "author": "Tomoya Koyanagi",
     "license": "MIT",
     "dependencies": {
+        "@tomk79/pickles2-code-search": "github:tomk79/pickles2-code-search#develop",
         "broccoli-field-table": "^0.1.2",
         "broccoli-html-editor": "^1.0.7",
         "broccoli-processor": "github:broccoli-html-editor/node-broccoli-processor#develop",
@@ -33,6 +34,7 @@
         "file-stream-rotator": "0.0.7",
         "fs-extra": "^0.24.0",
         "gitparse79": "github:tomk79/node-git-parser#develop",
+        "gitui79": "^0.3.3",
         "glob": "^5.0.10",
         "iterate79": "^1.1.0",
         "jquery": "^3.6.0",

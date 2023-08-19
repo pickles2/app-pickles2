@@ -46,17 +46,17 @@ gulp.task("client-libs:remote-finder", function() {
 	;
 });
 gulp.task("client-libs:gitui79.js", function() {
-	return gulp.src(["submodules/gitui79.js/dist/**/*"])
+	return gulp.src(["node_modules/gitui79/dist/**/*"])
 		.pipe(gulp.dest( './app/common/gitui79/dist/' ))
 	;
 });
 gulp.task("client-libs:node-git-parser", function() {
-	return gulp.src(["submodules/node-git-parser/dist/**/*"])
+	return gulp.src(["node_modules/gitparse79/dist/**/*"])
 		.pipe(gulp.dest( './app/common/gitparse79/dist/' ))
 	;
 });
 gulp.task("client-libs:pickles2-code-search", function() {
-	return gulp.src(["submodules/pickles2-code-search/dist/**/*"])
+	return gulp.src(["node_modules/@tomk79/pickles2-code-search/dist/**/*"])
 		.pipe(gulp.dest( './app/common/pickles2-code-search/dist/' ))
 	;
 });
@@ -148,29 +148,7 @@ gulp.task('.css', function(){
 });
 
 
-// 【暫定対応】
-gulp.task("provisional", function(callback) {
-	// nw-builderがビルドに失敗するようになったので
-	// 暫定的に、ビルドが通っていたときのライブラリのバックアップから復元する。
-	// gulp.src(["_libs/**/*"])
-	// 	.pipe(gulp.dest( './node_modules/' ))
-	// ;
-
-	// Windows版ビルドが正常起動しなくなったため追加。
-	// broccoli-html-editor に導入した sass のディレクトリ階層が深すぎたのが原因か？
-	// fsx.removeSync(__dirname+'/node_modules/broccoli-html-editor/submodules/');
-	// fsx.removeSync(__dirname+'/node_modules/broccoli-html-editor/tests/');
-	// fsx.removeSync(__dirname+'/node_modules/broccoli-field-table/submodules/');
-	// fsx.removeSync(__dirname+'/node_modules/broccoli-field-table/tests/');
-	// fsx.removeSync(__dirname+'/node_modules/broccoli-html-editor/node_modules/node-sass/');
-	callback();
-	return;
-});
-
-
 let _tasks = gulp.parallel(
-	'provisional',
-
 	"client-libs:broccoli-html-editor",
 	"client-libs:broccoli-field-table",
 	"client-libs:pickles2-contents-editor",
