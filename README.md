@@ -2,20 +2,19 @@
 
 code name: babycorn
 
-[Pickles 2](https://pickles2.pxt.jp/) のプロジェクトテンプレートをベースにしたウェブサイトを編集するGUI編集環境を提供します。
+[Pickles 2](https://pickles2.com/) のデスクトップ版 CMSです。
 
-Pickles Framework 2 に特化した CMSライクなテキストエディタです。
 
 ## Install
 
-Copy `Pickles2.app` to your Application Folder.
+`Pickles2.app` を Application フォルダにコピーします。
 
 
 ## for developer
 
 ### Initial Setup for develop
 
-```
+```bash
 $ npm install -g gulp
 $ git clone https://github.com/pickles2/app-pickles2.git
 $ cd app-pickles2
@@ -26,19 +25,19 @@ $ composer install
 
 ### update submodules changes
 
-```
+```bash
 $ npm run submodules-update
 ```
 
 ### Boot for develop
 
-```
+```bash
 $ npm start
 ```
 
 `npm start` でエラーが起きる場合は以下を試してください。
 
-```
+```bash
 $ npm install nw
 $ npm start
 ```
@@ -46,14 +45,14 @@ $ npm start
 
 ### Task Runner
 
-```
+```bash
 $ gulp watch
 ```
 
 
 ### Build application
 
-```
+```bash
 $ php docs/help/htdocs/.px_execute.php /?PX=publish.run
 $ npm run build
 ```
@@ -63,7 +62,7 @@ $ npm run build
 
 ### Build application cleanly
 
-```
+```bash
 $ sh build/build_clean.sh [-i ${AppleIdentity}] [-s ${path_to_apple_coodesign.json}] {$branch_or_version}
 ```
 
@@ -74,14 +73,14 @@ mac で実行してください。Windows では実行できません。
 
 #### Staple Apple Notarize Info
 
-```
+```bash
 $ sh build/staple_apple_notarize_info.sh build/dist/Pickles2-{$version}-osx64.zip
 ```
 
 ### node and npm version
 
-- node v12.16.3
-- npm v6.14.4
+- node v17.2.0
+- npm v8.1.4
 
 Mac で Windows 版をビルドするにあたり、次の環境が必要です。
 
@@ -204,6 +203,7 @@ Mac で Windows 版をビルドするにあたり、次の環境が必要です�
 - その他いくつかの不具合の修正。
 
 それ以前の更新は[こちらから](./docs/changelog.md)。
+
 
 ## ライセンス - License
 
