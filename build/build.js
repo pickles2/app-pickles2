@@ -120,6 +120,7 @@ var nw = new NwBuilder({
 		var rtn = [
 			'./package.json',
 			'./app/**/*',
+			'./images/**/*',
 			'./composer.json',
 			'./vendor/autoload.php'
 		];
