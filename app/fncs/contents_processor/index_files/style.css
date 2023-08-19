@@ -1,11 +1,1 @@
-.cont_wrap {
-  position: relative;
-  padding-bottom: 120px; }
-
-.cont_start-btn {
-  background-color: rgba(255, 255, 255, 0.95);
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  z-index: 1000;
-  width: 100%; }
+.cont_wrap{padding-bottom:120px;position:relative}.cont_start-btn{background-color:hsla(0,0%,100%,.95);bottom:0;left:0;position:fixed;width:100%;z-index:1000}

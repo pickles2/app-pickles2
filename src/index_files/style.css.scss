@@ -131,14 +131,14 @@ body{
 // Jumbotron
 .cont_top_jumbotron{
 	background-color: #f6f6f6;
-	background-image: url('./images/main.png');
+	background-image: url('../../app/index_files/images/main.png');
 	background-position: center center;
 	background-size: cover;
 	color: #00a0e6;
 	padding: 3em 0.5em;
 	.px2-darkmode & {
 		background-color: #333;
-		background-image: url('./images/main_darkmode.png');
+		background-image: url('../../app/index_files/images/main_darkmode.png');
 	}
 }
 

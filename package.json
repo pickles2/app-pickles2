@@ -7,7 +7,14 @@
     "scripts": {
         "preinstall": "git submodule update --init --recursive --force",
         "start": "nw",
-        "build": "node ./build/build.js"
+        "build": "node ./build/build.js",
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
     },
     "author": "Tomoya Koyanagi",
     "license": "MIT",
@@ -64,6 +71,8 @@
         "laravel-mix": "^6.0.48",
         "nw": "0.79.0-sdk",
         "nw-builder": "4.3.9",
+        "resolve-url-loader": "^5.0.0",
+        "sass-loader": "^12.6.0",
         "url-loader": "^4.1.1",
         "webpack": "^5.88.2",
         "webpack-stream": "^7.0.0"

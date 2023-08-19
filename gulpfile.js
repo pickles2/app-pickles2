@@ -139,16 +139,6 @@ gulp.task("webpack:home", function() {
 });
 
 
-// src 中の *.css.scss を処理
-gulp.task('.css.scss', function(){
-	return gulp.src(["src/**/*.css.scss","!src/**/*.ignore*","!src/**/*.ignore*/*"])
-		.pipe(plumber())
-		.pipe(sass())
-		.pipe(rename({extname: ''}))
-		.pipe(gulp.dest( './app/' ))
-	;
-});
-
 // src 中の *.css を処理
 gulp.task('.css', function(){
 	return gulp.src(["src/**/*.css","!src/**/*.ignore*","!src/**/*.ignore*/*"])
@@ -198,7 +188,6 @@ let _tasks = gulp.parallel(
 	'webpack:common/styles/contents.js',
 	'webpack:home',
 	'.css',
-	'.css.scss'
 );
 
 // src 中のすべての拡張子を監視して処理
