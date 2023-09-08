@@ -226,7 +226,8 @@ new (function($, window){
 				},
 				function(it1){
 					if( main.getAppearance() == 'dark' ){
-						$('body').addClass('px2-darkmode');
+						$('html').addClass('px2-darkmode');
+						document.querySelector('.px2style-theme').href = './common/px2style/dist/themes/darkmode.css';
 					}
 					setTimeout(function(){
 						it1.next();

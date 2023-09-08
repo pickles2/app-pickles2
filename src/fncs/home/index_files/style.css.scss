@@ -151,40 +151,41 @@
 /**
  * Darkmode
  */
-.px2-darkmode {
-.cont_readme_content{
-	border-color: #333;
-	background: #111;
+.px2-darkmode,
+.px2-darkmode body {
+	.cont_readme_content{
+		border-color: #333;
+		background: #111;
 
-	table{
-		th,
-		td{
-			border-color: #444;
-			background: #333;
+		table{
+			th,
+			td{
+				border-color: #444;
+				background: #333;
+			}
+			th{
+				background: #3d3d3d;
+			}
 		}
-		th{
-			background: #3d3d3d;
+
+		&-no_readme{
+			color:#666;
 		}
 	}
 
-	&-no_readme{
-		color:#666;
+	.cont-git-bar{
+		border-top-color: #444;
+		border-bottom-color: #444;
+		background-color: #222;
 	}
-}
+	.cont-wasabi-bar{
+		border-top-color: #444;
+		border-bottom-color: #444;
+		background-color: #222;
+	}
 
-.cont-git-bar{
-	border-top-color: #444;
-	border-bottom-color: #444;
-	background-color: #222;
-}
-.cont-wasabi-bar{
-	border-top-color: #444;
-	border-bottom-color: #444;
-	background-color: #222;
-}
-
-.cont-footer{
-	border-top-color: #444;
-	background-color: #393939;
-}
+	.cont-footer{
+		border-top-color: #444;
+		background-color: #393939;
+	}
 }

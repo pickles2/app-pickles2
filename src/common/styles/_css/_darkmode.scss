@@ -1,14 +1,15 @@
 $darkmode-text-color: #ccc;
 $darkmode-background-color: #242424;
 
-body.px2-darkmode{
+body.px2-darkmode,
+.px2-darkmode body {
 	color: $darkmode-text-color;
 	background-color: $darkmode-background-color;
 
-	a{
+	a {
 		color: #ddd;
 	}
-	a:hover{
+	a:hover {
 		color: #fff;
 	}
 
