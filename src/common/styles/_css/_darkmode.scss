@@ -168,4 +168,108 @@ body.px2-darkmode,
 			border-bottom-color: $darkmode-background-color;
 		}
 	}
+
+	/**
+	 * Header
+	 */
+	.px2-header{
+		color: $darkmode-text-color;
+
+		&__inner{
+			background-color: #222;
+			box-shadow: 0 5px 13px rgba(1000, 100, 100, 0.1);
+		}
+
+		a{
+			color: #ccc;
+			&:hover{
+				color: #fff;
+			}
+		}
+
+		// LOGO
+		&__px2logo{
+			a{
+				background-color: #222;
+			}
+		} // px2logo
+
+		&__id{
+			a{
+				&:hover{
+					color: #fff;
+				}
+			}
+		} // id
+
+		// グローバルメニュー
+		&__global-menu{
+			ul{
+				li{
+					a,span{
+						color: #999;
+						&.current{
+							border-bottom-color: rgba(0, 0, 0, 0.85);
+						}
+					}
+				}
+
+				li.px2-header__global-menu-group{
+					>a::after{
+						border-color:#999;
+						border-top-color:transparent;
+						border-bottom-color:transparent;
+					}
+				}
+			}
+		} // global-menu
+
+		&__shoulder-menu {
+			>button {
+				background: #060606;
+			}
+			>ul{
+				background-color: #555;
+				border-color: #222;
+
+				li{
+					border-bottom-color: #333;
+
+					a{
+						color: #ccc;
+						background-color: #555;
+						&:hover{
+							background-color: #444;
+							color: #eee;
+						}
+						&.current{
+							color: #eee;
+						}
+					}
+				}
+				li.px2-header__shoulder-menu-group{
+					>a::after{
+						border-color:#eee;
+						border-top-color:transparent;
+						border-bottom-color:transparent;
+					}
+					ul{
+						li{
+							a{
+								background-color: #333;
+								color: #ddd;
+								&:hover{
+									background-color: #444;
+									color: #eee;
+								}
+								&.current{
+									color: #eee;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
