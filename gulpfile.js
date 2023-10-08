@@ -20,16 +20,6 @@ gulp.task("client-libs:broccoli-field-table", function() {
 		.pipe(gulp.dest( './app/common/broccoli-field-table/dist/' ))
 	;
 });
-gulp.task("client-libs:pickles2-contents-editor", function() {
-	return gulp.src(["node_modules/pickles2-contents-editor/dist/**/*"])
-		.pipe(gulp.dest( './app/common/pickles2-contents-editor/dist/' ))
-	;
-});
-gulp.task("client-libs:pickles2-module-editor", function() {
-	return gulp.src(["node_modules/pickles2-module-editor/dist/**/*"])
-		.pipe(gulp.dest( './app/common/pickles2-module-editor/dist/' ))
-	;
-});
 gulp.task("client-libs:px2style", function() {
 	return gulp.src(["node_modules/px2style/dist/**/*"])
 		.pipe(gulp.dest( './app/common/px2style/dist/' ))
@@ -151,8 +141,6 @@ gulp.task('.css', function(){
 let _tasks = gulp.parallel(
 	"client-libs:broccoli-html-editor",
 	"client-libs:broccoli-field-table",
-	"client-libs:pickles2-contents-editor",
-	"client-libs:pickles2-module-editor",
 	"client-libs:px2style",
 	"client-libs:cmd-queue",
 	"client-libs:remote-finder",

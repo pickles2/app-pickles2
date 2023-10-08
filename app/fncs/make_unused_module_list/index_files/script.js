@@ -1,13 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v3.7.0
+ * jQuery JavaScript Library v3.7.1
  * https://jquery.com/
  *
  * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2023-05-11T18:29Z
+ * Date: 2023-08-28T13:37Z
  */
 ( function( global, factory ) {
 
@@ -148,7 +148,7 @@ function toType( obj ) {
 
 
 
-var version = "3.7.0",
+var version = "3.7.1",
 
 	rhtmlSuffix = /HTML$/i,
 
@@ -412,9 +412,14 @@ jQuery.extend( {
 				// Do not traverse comment nodes
 				ret += jQuery.text( node );
 			}
-		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+		}
+		if ( nodeType === 1 || nodeType === 11 ) {
 			return elem.textContent;
-		} else if ( nodeType === 3 || nodeType === 4 ) {
+		}
+		if ( nodeType === 9 ) {
+			return elem.documentElement.textContent;
+		}
+		if ( nodeType === 3 || nodeType === 4 ) {
 			return elem.nodeValue;
 		}
 
@@ -1127,12 +1132,17 @@ function setDocument( node ) {
 		documentElement.msMatchesSelector;
 
 	// Support: IE 9 - 11+, Edge 12 - 18+
-	// Accessing iframe documents after unload throws "permission denied" errors (see trac-13936)
-	// Support: IE 11+, Edge 17 - 18+
-	// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
-	// two documents; shallow comparisons work.
-	// eslint-disable-next-line eqeqeq
-	if ( preferredDoc != document &&
+	// Accessing iframe documents after unload throws "permission denied" errors
+	// (see trac-13936).
+	// Limit the fix to IE & Edge Legacy; despite Edge 15+ implementing `matches`,
+	// all IE 9+ and Edge Legacy versions implement `msMatchesSelector` as well.
+	if ( documentElement.msMatchesSelector &&
+
+		// Support: IE 11+, Edge 17 - 18+
+		// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+		// two documents; shallow comparisons work.
+		// eslint-disable-next-line eqeqeq
+		preferredDoc != document &&
 		( subWindow = document.defaultView ) && subWindow.top !== subWindow ) {
 
 		// Support: IE 9 - 11+, Edge 12 - 18+
@@ -2695,12 +2705,12 @@ jQuery.find = find;
 jQuery.expr[ ":" ] = jQuery.expr.pseudos;
 jQuery.unique = jQuery.uniqueSort;
 
-// These have always been private, but they used to be documented
-// as part of Sizzle so let's maintain them in the 3.x line
-// for backwards compatibility purposes.
+// These have always been private, but they used to be documented as part of
+// Sizzle so let's maintain them for now for backwards compatibility purposes.
 find.compile = compile;
 find.select = select;
 find.setDocument = setDocument;
+find.tokenize = tokenize;
 
 find.escape = jQuery.escapeSelector;
 find.getText = jQuery.text;
@@ -5914,7 +5924,7 @@ function domManip( collection, args, callback, ignored ) {
 			if ( hasScripts ) {
 				doc = scripts[ scripts.length - 1 ].ownerDocument;
 
-				// Reenable scripts
+				// Re-enable scripts
 				jQuery.map( scripts, restoreScript );
 
 				// Evaluate executable scripts on first document insertion
@@ -6371,7 +6381,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				trChild = document.createElement( "div" );
 
 				table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-				tr.style.cssText = "border:1px solid";
+				tr.style.cssText = "box-sizing:content-box;border:1px solid";
 
 				// Support: Chrome 86+
 				// Height set through cssText does not get applied.
@@ -6383,7 +6393,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				// In our bodyBackground.html iframe,
 				// display for all div elements is set to "inline",
 				// which causes a problem only in Android 8 Chrome 86.
-				// Ensuring the div is display: block
+				// Ensuring the div is `display: block`
 				// gets around this issue.
 				trChild.style.display = "block";
 
@@ -10551,7 +10561,9 @@ jQuery.fn.extend( {
 	},
 
 	hover: function( fnOver, fnOut ) {
-		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+		return this
+			.on( "mouseenter", fnOver )
+			.on( "mouseleave", fnOut || fnOver );
 	}
 } );
 
@@ -10731,29 +10743,25 @@ window.contApp = new (function(main){
 			[
 				function(it1, data){
 					// broccoli-html-editor-php エンジン利用環境の要件を確認
-					if( pj.getGuiEngineName() == 'broccoli-html-editor-php' ){
-						pj.checkPxCmdVersion(
-							{
-								px2dthelperVersion: '>=2.0.8'
-							},
-							function(){
-								// API設定OK
-								it1.next(data);
-							},
-							function( errors ){
-								// API設定が不十分な場合のエラー処理
-								var html = main.utils.bindEjs(
-									main.fs.readFileSync('app/common/templates/broccoli-html-editor-php-is-not-available.html').toString(),
-									{errors: errors}
-								);
-								$('.contents').html( html );
-								// エラーだったらここで離脱。
-								return;
-							}
-						);
-						return;
-					}
-					it1.next(data);
+					pj.checkPxCmdVersion(
+						{
+							px2dthelperVersion: '>=2.0.8'
+						},
+						function(){
+							// API設定OK
+							it1.next(data);
+						},
+						function( errors ){
+							// API設定が不十分な場合のエラー処理
+							var html = main.utils.bindEjs(
+								main.fs.readFileSync('app/common/templates/broccoli-html-editor-php-is-not-available.html').toString(),
+								{errors: errors}
+							);
+							$('.contents').html( html );
+							// エラーだったらここで離脱。
+							return;
+						}
+					);
 				},
 				function(it1, data){
 					pj.px2proj.get_path_homedir(function(path){
@@ -11146,59 +11154,45 @@ module.exports = function(app, main, pj, pathHomeDir, $progressMessage, $progres
 	function getAllModuleList(callback){
 		var definedModuleList = false;
 
-		if( pj.getGuiEngineName() == 'broccoli-html-editor-php' ){
-			// --------------------------------------
-			// PHP版Broccoliを利用しているプロジェクトの場合
-			pj.px2dthelperGetAll('/', {}, function(px2all){
-				var page_path = '/';
-				var realpathDataDir = px2all.realpath_homedir+'_sys/ram/data/';
-				var gpiOptions = {
-					'api': 'broccoliBridge',
-					'forBroccoli': {
-						'api': 'getAllModuleList',
-						'options': {
-							'lang': 'ja'
-						}
-					},
-					'page_path': page_path
-				};
-
-				var tmpFileName = '__tmp_'+main.utils79.md5( Date.now() )+'.json';
-				main.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(gpiOptions) );
-				var PxCommand = 'PX=px2dthelper.px2ce.gpi&appMode=desktop&data_filename='+encodeURIComponent(tmpFileName);
-				pj.px2proj.query(
-					pj.getConcretePath(page_path)+'?'+PxCommand, {
-						"output": "json",
-						"complete": function(data, code){
-							main.fs.unlinkSync( realpathDataDir+tmpFileName );
-
-							try{
-								definedModuleList = JSON.parse(data);
-							}catch(e){
-								console.error(e);
-							}
-
-							callback( definedModuleList );
-
-							return;
-						}
+		// --------------------------------------
+		// PHP版Broccoliを利用しているプロジェクトの場合
+		pj.px2dthelperGetAll('/', {}, function(px2all){
+			var page_path = '/';
+			var realpathDataDir = px2all.realpath_homedir+'_sys/ram/data/';
+			var gpiOptions = {
+				'api': 'broccoliBridge',
+				'forBroccoli': {
+					'api': 'getAllModuleList',
+					'options': {
+						'lang': 'ja'
 					}
-				);
-			});
-			return;
-		}else{
-			// --------------------------------------
-			// 内蔵JS版Broccoliを利用しているプロジェクトの場合
-			pj.createPickles2ContentsEditorServer( '/', {}, function(px2ce){
-				px2ce.createBroccoli(function(broccoli){
-					broccoli.getAllModuleList(function(result){
-						definedModuleList = result;
+				},
+				'page_path': page_path
+			};
+
+			var tmpFileName = '__tmp_'+main.utils79.md5( Date.now() )+'.json';
+			main.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(gpiOptions) );
+			var PxCommand = 'PX=px2dthelper.px2ce.gpi&appMode=desktop&data_filename='+encodeURIComponent(tmpFileName);
+			pj.px2proj.query(
+				pj.getConcretePath(page_path)+'?'+PxCommand, {
+					"output": "json",
+					"complete": function(data, code){
+						main.fs.unlinkSync( realpathDataDir+tmpFileName );
+
+						try{
+							definedModuleList = JSON.parse(data);
+						}catch(e){
+							console.error(e);
+						}
+
 						callback( definedModuleList );
-					});
-				});
-			} );
-			return;
-		}
+
+						return;
+					}
+				}
+			);
+		});
+		return;
 
 	}
 

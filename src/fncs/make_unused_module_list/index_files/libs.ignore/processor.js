@@ -280,59 +280,45 @@ module.exports = function(app, main, pj, pathHomeDir, $progressMessage, $progres
 	function getAllModuleList(callback){
 		var definedModuleList = false;
 
-		if( pj.getGuiEngineName() == 'broccoli-html-editor-php' ){
-			// --------------------------------------
-			// PHP版Broccoliを利用しているプロジェクトの場合
-			pj.px2dthelperGetAll('/', {}, function(px2all){
-				var page_path = '/';
-				var realpathDataDir = px2all.realpath_homedir+'_sys/ram/data/';
-				var gpiOptions = {
-					'api': 'broccoliBridge',
-					'forBroccoli': {
-						'api': 'getAllModuleList',
-						'options': {
-							'lang': 'ja'
-						}
-					},
-					'page_path': page_path
-				};
-
-				var tmpFileName = '__tmp_'+main.utils79.md5( Date.now() )+'.json';
-				main.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(gpiOptions) );
-				var PxCommand = 'PX=px2dthelper.px2ce.gpi&appMode=desktop&data_filename='+encodeURIComponent(tmpFileName);
-				pj.px2proj.query(
-					pj.getConcretePath(page_path)+'?'+PxCommand, {
-						"output": "json",
-						"complete": function(data, code){
-							main.fs.unlinkSync( realpathDataDir+tmpFileName );
-
-							try{
-								definedModuleList = JSON.parse(data);
-							}catch(e){
-								console.error(e);
-							}
-
-							callback( definedModuleList );
-
-							return;
-						}
+		// --------------------------------------
+		// PHP版Broccoliを利用しているプロジェクトの場合
+		pj.px2dthelperGetAll('/', {}, function(px2all){
+			var page_path = '/';
+			var realpathDataDir = px2all.realpath_homedir+'_sys/ram/data/';
+			var gpiOptions = {
+				'api': 'broccoliBridge',
+				'forBroccoli': {
+					'api': 'getAllModuleList',
+					'options': {
+						'lang': 'ja'
 					}
-				);
-			});
-			return;
-		}else{
-			// --------------------------------------
-			// 内蔵JS版Broccoliを利用しているプロジェクトの場合
-			pj.createPickles2ContentsEditorServer( '/', {}, function(px2ce){
-				px2ce.createBroccoli(function(broccoli){
-					broccoli.getAllModuleList(function(result){
-						definedModuleList = result;
+				},
+				'page_path': page_path
+			};
+
+			var tmpFileName = '__tmp_'+main.utils79.md5( Date.now() )+'.json';
+			main.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(gpiOptions) );
+			var PxCommand = 'PX=px2dthelper.px2ce.gpi&appMode=desktop&data_filename='+encodeURIComponent(tmpFileName);
+			pj.px2proj.query(
+				pj.getConcretePath(page_path)+'?'+PxCommand, {
+					"output": "json",
+					"complete": function(data, code){
+						main.fs.unlinkSync( realpathDataDir+tmpFileName );
+
+						try{
+							definedModuleList = JSON.parse(data);
+						}catch(e){
+							console.error(e);
+						}
+
 						callback( definedModuleList );
-					});
-				});
-			} );
-			return;
-		}
+
+						return;
+					}
+				}
+			);
+		});
+		return;
 
 	}
 

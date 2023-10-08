@@ -25,29 +25,26 @@ window.contApp = new (function( main ){
 			[
 				function(it1, arg){
 					// broccoli-html-editor-php エンジン利用環境の要件を確認
-					if( pj.getGuiEngineName() == 'broccoli-html-editor-php' ){
-						pj.checkPxCmdVersion(
-							{
-								px2dthelperVersion: '>=2.0.8'
-							},
-							function(){
-								// API設定OK
-								it1.next(arg);
-							},
-							function( errors ){
-								// API設定が不十分な場合のエラー処理
-								var html = main.utils.bindEjs(
-									main.fs.readFileSync('app/common/templates/broccoli-html-editor-php-is-not-available.html').toString(),
-									{errors: errors}
-								);
-								$('.contents').html( html );
-								// エラーだったらここで離脱。
-								return;
-							}
-						);
-						return;
-					}
-					it1.next(arg);
+					pj.checkPxCmdVersion(
+						{
+							px2dthelperVersion: '>=2.0.8'
+						},
+						function(){
+							// API設定OK
+							it1.next(arg);
+						},
+						function( errors ){
+							// API設定が不十分な場合のエラー処理
+							var html = main.utils.bindEjs(
+								main.fs.readFileSync('app/common/templates/broccoli-html-editor-php-is-not-available.html').toString(),
+								{errors: errors}
+							);
+							$('.contents').html( html );
+							// エラーだったらここで離脱。
+							return;
+						}
+					);
+					return;
 				},
 				function(it1, arg){
 					$content = $('.contents');
@@ -68,46 +65,28 @@ window.contApp = new (function( main ){
 				},
 				function(it1, arg){
 					// クライアントリソース情報を収集
-					if( guiEngine == 'broccoli-html-editor-php' ){
-						pj.execPx2(
-							'/?PX=px2dthelper.px2me.client_resources',
-							{
-								complete: function(resources){
-									try{
-										client_resources = JSON.parse(resources);
-									}catch(e){
-										console.error('Failed to parse JSON "client_resources".', e);
-										console.error(resources);
-									}
-									for( var idx in client_resources.css ){
-										client_resources.css[idx] = 'file://'+client_resources.css[idx];
-									}
-									for( var idx in client_resources.js ){
-										client_resources.js[idx] = 'file://'+client_resources.js[idx];
-									}
-									it1.next(arg);
+					pj.execPx2(
+						'/?PX=px2dthelper.px2me.client_resources',
+						{
+							complete: function(resources){
+								try{
+									client_resources = JSON.parse(resources);
+								}catch(e){
+									console.error('Failed to parse JSON "client_resources".', e);
+									console.error(resources);
 								}
+								for( var idx in client_resources.css ){
+									client_resources.css[idx] = 'file://'+client_resources.css[idx];
+								}
+								for( var idx in client_resources.js ){
+									client_resources.js[idx] = 'file://'+client_resources.js[idx];
+								}
+								it1.next(arg);
 							}
-						);
-						return;
+						}
+					);
+					return;
 
-					}else{
-						client_resources = {
-							css: [
-								'../../common/broccoli-html-editor/client/dist/broccoli.css',
-								'../../common/pickles2-contents-editor/dist/pickles2-contents-editor.css',
-								'../../common/pickles2-module-editor/dist/pickles2-module-editor.css'
-							],
-							js: [
-								'../../common/broccoli-html-editor/client/dist/broccoli.js',
-								'../../common/pickles2-contents-editor/dist/pickles2-contents-editor.js',
-								'../../common/pickles2-contents-editor/dist/libs/broccoli-field-table/dist/broccoli-field-table.js',
-								'../../common/pickles2-module-editor/dist/pickles2-module-editor.js'
-							]
-						};
-						it1.next(arg);
-						return;
-					}
 				},
 				function(it1, arg){
 					// クライアントリソースをロード
@@ -153,30 +132,22 @@ window.contApp = new (function( main ){
 								// GPI(General Purpose Interface) Bridge
 								// broccoliは、バックグラウンドで様々なデータ通信を行います。
 								// GPIは、これらのデータ通信を行うための汎用的なAPIです。
-								if( guiEngine == 'broccoli-html-editor-php' ){
-									var tmpFileName = '__tmp_'+utils79.md5( Date.now() )+'.json';
-									main.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(input) );
-									pj.execPx2(
-										'/?PX=px2dthelper.px2me.gpi&appMode=desktop&data_filename='+encodeURIComponent( tmpFileName ),
-										{
-											complete: function(rtn){
-												try{
-													rtn = JSON.parse(rtn);
-												}catch(e){
-													console.error('Failed to parse JSON String -> ' + rtn);
-												}
-												main.fs.unlinkSync( realpathDataDir+tmpFileName );
-												callback( rtn );
+								var tmpFileName = '__tmp_'+utils79.md5( Date.now() )+'.json';
+								main.fs.writeFileSync( realpathDataDir+tmpFileName, JSON.stringify(input) );
+								pj.execPx2(
+									'/?PX=px2dthelper.px2me.gpi&appMode=desktop&data_filename='+encodeURIComponent( tmpFileName ),
+									{
+										complete: function(rtn){
+											try{
+												rtn = JSON.parse(rtn);
+											}catch(e){
+												console.error('Failed to parse JSON String -> ' + rtn);
 											}
+											main.fs.unlinkSync( realpathDataDir+tmpFileName );
+											callback( rtn );
 										}
-									);
-								}else{
-									pj.createPickles2ModuleEditorServer(function(px2me){
-										px2me.gpi(input, function(res){
-											callback(res);
-										});
-									});
-								}
+									}
+								);
 								return;
 							},
 							'complete': function(){

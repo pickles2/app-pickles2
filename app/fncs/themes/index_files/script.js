@@ -3501,25 +3501,22 @@ window.contApp = new (function(){
 			function(it1, arg){
 				// --------------------------------------
 				// broccoli-html-editor-php エンジン利用環境の要件を確認
-				if( pj.getGuiEngineName() == 'broccoli-html-editor-php' ){
-					pj.checkPxCmdVersion(
-						{
-							px2dthelperVersion: '>=2.0.8'
-						},
-						function(){
-							// API設定OK
-							it1.next(arg);
-						},
-						function( errors ){
-							// broccoli-html-editor-php が利用不可
-							_this.pageBroccoliHtmlEditorPhpIsNotAvailable(errors);
-							callback();
-							return;
-						}
-					);
-					return;
-				}
-				it1.next(arg);
+				pj.checkPxCmdVersion(
+					{
+						px2dthelperVersion: '>=2.0.8'
+					},
+					function(){
+						// API設定OK
+						it1.next(arg);
+					},
+					function( errors ){
+						// broccoli-html-editor-php が利用不可
+						_this.pageBroccoliHtmlEditorPhpIsNotAvailable(errors);
+						callback();
+						return;
+					}
+				);
+				return;
 			},
 			function(it1, arg){
 				// --------------------------------------

@@ -26,29 +26,26 @@ window.contApp = new (function(px){
 			[
 				function(it1, data){
 					// broccoli-html-editor-php エンジン利用環境の要件を確認
-					if( pj.getGuiEngineName() == 'broccoli-html-editor-php' ){
-						pj.checkPxCmdVersion(
-							{
-								px2dthelperVersion: '>=2.0.8'
-							},
-							function(){
-								// API設定OK
-								it1.next(data);
-							},
-							function( errors ){
-								// API設定が不十分な場合のエラー処理
-								var html = px.utils.bindEjs(
-									px.fs.readFileSync('app/common/templates/broccoli-html-editor-php-is-not-available.html').toString(),
-									{errors: errors}
-								);
-								$('.contents').html( html );
-								// エラーだったらここで離脱。
-								return;
-							}
-						);
-						return;
-					}
-					it1.next(data);
+					pj.checkPxCmdVersion(
+						{
+							px2dthelperVersion: '>=2.0.8'
+						},
+						function(){
+							// API設定OK
+							it1.next(data);
+						},
+						function( errors ){
+							// API設定が不十分な場合のエラー処理
+							var html = px.utils.bindEjs(
+								px.fs.readFileSync('app/common/templates/broccoli-html-editor-php-is-not-available.html').toString(),
+								{errors: errors}
+							);
+							$('.contents').html( html );
+							// エラーだったらここで離脱。
+							return;
+						}
+					);
+					return;
 				},
 				function(it1, data){
 					pj.px2proj.get_path_homedir(function(path){

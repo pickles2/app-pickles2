@@ -963,6 +963,8 @@ module.exports = function( window, main, projectInfo, projectId, cbStandby ) {
 	 * pickles2-contents-editor(サーバーサイド)を生成する
 	 */
 	this.createPickles2ContentsEditorServer = function(page_path, options, callback){
+		alert('deprecated (createPickles2ContentsEditorServer())');
+		return;
 		options = options || {};
 		callback = callback || function(){};
 		var Px2CE = require('pickles2-contents-editor');
@@ -1112,6 +1114,8 @@ module.exports = function( window, main, projectInfo, projectId, cbStandby ) {
 	 * pickles2-module-editor(サーバーサイド)を生成する
 	 */
 	this.createPickles2ModuleEditorServer = function(callback){
+		alert('depricated (createPickles2ModuleEditorServer())');
+		return;
 		callback = callback || function(){};
 		var Px2ME = require('pickles2-module-editor');
 		var _pj = this;

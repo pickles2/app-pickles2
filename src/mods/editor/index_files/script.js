@@ -30,12 +30,7 @@ window.contApp = new (function( px ){
 	 * エディターを起動
 	 */
 	function openEditor(){
-		var url = './editor_px2ce.html?';
-		var guiEngine = _pj.getGuiEngineName();
-
-		if(guiEngine == 'broccoli-html-editor-php'){
-			url = './editor_px2ce_php.html?'
-		}
+		var url = './editor_px2ce_php.html?'
 
 		if( _param.page_path ){
 			url += 'page_path='+encodeURIComponent( _param.page_path );
