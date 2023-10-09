@@ -1,11 +1,10 @@
 window.px = window.parent.main || window.opener.main;
 window.main = window.parent.main || window.opener.main;
 window.contApp = new (function( main ){
-	var px = main;
 	var _this = this;
+	var px = main;
 	var it79 = require('iterate79');
 	var utils79 = require('utils79');
-	var php = require('phpjs');
 	var _pj = px.getCurrentProject();
 	var pickles2ContentsEditor; // px2ce client
 	var realpathDataDir;

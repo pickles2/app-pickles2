@@ -3,8 +3,6 @@ window.main = window.parent.main || window.opener.main;
 window.contApp = new (function( px ){
 	var _this = this;
 	var it79 = require('iterate79');
-	var utils79 = require('utils79');
-	var php = require('phpjs');
 	var _pj = px.getCurrentProject();
 	var pickles2ContentsEditor = new Pickles2ContentsEditor(); // px2ce client
 	var resizeTimer;
