@@ -38,18 +38,18 @@ window.contApp = new (function( px ){
 			]
 		});
 		targetList = JSON.parse( JSON.stringify( targetList ) );
-		targetList = px.php.trim( targetList );
+		targetList = px.utils79.trim( targetList );
 		var rows = targetList.split(new RegExp('\r\n|\r|\n'));
 		var queue = [];
 		function normalizePath(path){
 			if( path.match(new RegExp('\\/$')) ){
 				path += _pj.get_directory_index_primary();
 			}
-			path = px.path.resolve('/', px.php.trim(path));
+			path = px.path.resolve('/', px.utils79.trim(path));
 			return path;
 		}
 		for( var idx in rows ){
-			rows[idx] = px.php.trim( rows[idx] );
+			rows[idx] = px.utils79.trim( rows[idx] );
 			if( !rows[idx] ){ continue; }
 			var tmpRow = rows[idx].split(',');
 			queue.push( { 'from': normalizePath(tmpRow[0]), 'to': normalizePath(tmpRow[1]) } );
@@ -58,10 +58,6 @@ window.contApp = new (function( px ){
 			$body.text('移動の指示がありません。終了します。');
 			return true;
 		}
-
-		// var path = require('path');
-		// window.contApp.moveCont = require( path.resolve('./app/fncs/movecontents/index_files/app.moveContent.js') );
-		// window.contApp.relink = require( path.resolve('./app/fncs/movecontents/index_files/app.relink.js') );
 
 		px.utils.iterate(
 			queue ,

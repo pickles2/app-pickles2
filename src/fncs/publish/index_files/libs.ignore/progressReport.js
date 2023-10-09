@@ -49,12 +49,12 @@ module.exports = function(contApp, px, $){
 		}
 
 		for( var idx in rows ){
-			var row = px.php.trim( rows[idx] );
+			var row = px.utils79.trim( rows[idx] );
 			if( typeof(row) !== typeof('') || !row.length ){
 				continue;
 			}
 			if( row.match( new RegExp('^\\#\\#([\\s\\S]+)$') ) ){
-				phase = px.php.trim( RegExp.$1 );
+				phase = px.utils79.trim( RegExp.$1 );
 				if( phase == 'Start publishing' ){
 					$phase.text( 'Publishing...' );
 					(function(){

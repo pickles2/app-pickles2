@@ -24,7 +24,7 @@
 		// code = code.replace( new RegExp( px.utils.escapeRegExp(replaceStr.before), 'g' ), replaceStr.after );
 
 		function replacePath( path, task, resourceDir ){
-			var tmp = px.php.trim(path);
+			var tmp = px.utils79.trim(path);
 			if( tmp.match( new RegExp('^[a-zA-Z]+\\:') ) ){
 				return path;
 			}

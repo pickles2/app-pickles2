@@ -140,7 +140,7 @@ module.exports = function( px, pj, callbackOnStandby ) {
 							var tmp_matched_4 = RegExp.$4;
 
 							$preg_pattern = $preg_pattern + px.utils.escapeRegExp( tmp_matched_1 );
-							switch( px.php.trim(tmp_matched_2) ){
+							switch( px.utils79.trim(tmp_matched_2) ){
 								case '$':
 									$preg_pattern += '([a-zA-Z0-9\\-\\_]+)';
 									break;

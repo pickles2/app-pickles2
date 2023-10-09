@@ -1322,7 +1322,7 @@ module.exports = function( window, main, projectInfo, projectId, cbStandby ) {
 		var directory_index = [];
 		for( var idx in $tmp_di ){
 			var $file_name = $tmp_di[idx];
-			$file_name = main.php.trim( $file_name );
+			$file_name = main.utils79.trim( $file_name );
 			if( !$file_name.length ){ continue; }
 			directory_index.push( $file_name );
 		}

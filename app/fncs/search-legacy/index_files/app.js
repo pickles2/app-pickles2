@@ -57,7 +57,7 @@ window.contApp = new (function(px, $){
 							'matchFileName': finTargets.matchFileName,
 							'progress': function( done, max ){
 								targetCount = max;
-								var per = px.php.intval(done/max*100);
+								var per = Number(done/max*100);
 								$progress.find('.progress .progress-bar')
 									.text(done+'/'+max)
 									.css({'width':per+'%'})
@@ -81,7 +81,7 @@ window.contApp = new (function(px, $){
 								var $html = $(html);
 								$html.find('a[data-role=openInFinder]')
 									.click(function(){
-										px.utils.openURL( px.php.dirname($(this).attr('data-file-path')) );
+										px.utils.openURL( px.utils79.dirname($(this).attr('data-file-path')) );
 										return false;
 									})
 								;
@@ -137,7 +137,7 @@ window.contApp = new (function(px, $){
 				break;
 			case 'contents_comment':
 				rtn['target'].push(px.fs.realpathSync(pj.get('path'))+'/**/*');
-				rtn['filter'].push( new RegExp( px.php.preg_quote('/comments.ignore/comment.') ) );
+				rtn['filter'].push( new RegExp( px.utils79.preg_quote('/comments.ignore/comment.') ) );
 				break;
 			case 'sitemaps':
 				rtn['target'].push(px.fs.realpathSync(pj.get('path')+'/'+pj.get('home_dir')+'/sitemaps')+'/**/*');
@@ -168,7 +168,7 @@ window.contApp = new (function(px, $){
 				return;
 			}
 			path = px.fs.realpathSync(path);
-			path = new RegExp( px.php.preg_quote( path ) );
+			path = new RegExp( px.utils79.preg_quote( path ) );
 			if( $form.find('input[name=ignore-'+checkbox+']:checked').size() ){
 				rtn['ignore'].push( path );
 			}
@@ -176,7 +176,7 @@ window.contApp = new (function(px, $){
 		}
 
 		if( $form.find('input[name=target-contents-comment]:checked').size() ){
-			rtn['ignore'].push( new RegExp( px.php.preg_quote('/comments.ignore/comment.') ) );
+			rtn['ignore'].push( new RegExp( px.utils79.preg_quote('/comments.ignore/comment.') ) );
 		}
 		setIgnore( 'sitemap', pj.get('path')+'/'+pj.get('home_dir')+'sitemaps/' );
 		setIgnore( 'px-files', pj.get('path')+'/'+pj.get('home_dir') );
@@ -214,7 +214,7 @@ window.contApp = new (function(px, $){
 	});
 
 	this.getPath = function(file){
-		file = file.replace( new RegExp('^'+px.php.preg_quote(pj.get('path'))), '' );
+		file = file.replace( new RegExp('^'+px.utils79.preg_quote(pj.get('path'))), '' );
 		return file;
 	}
 

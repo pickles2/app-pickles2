@@ -263,7 +263,7 @@ window.contApp = new (function(main, $){
 						var tmp_ary_paths_region = str_paths_region_val.split(new RegExp('\r\n|\r|\n','g'));
 						var ary_paths_region = [];
 						for( var i in tmp_ary_paths_region ){
-							tmp_ary_paths_region[i] = main.php.trim(tmp_ary_paths_region[i]);
+							tmp_ary_paths_region[i] = main.utils79.trim(tmp_ary_paths_region[i]);
 							if( main.php.strlen(tmp_ary_paths_region[i]) ){
 								ary_paths_region.push( tmp_ary_paths_region[i] );
 							}
@@ -278,7 +278,7 @@ window.contApp = new (function(main, $){
 						var str_paths_ignore = '';
 						var ary_paths_ignore = str_paths_ignore_val.split(new RegExp('\r\n|\r|\n','g'));
 						for( var i in ary_paths_ignore ){
-							ary_paths_ignore[i] = main.php.trim(ary_paths_ignore[i]);
+							ary_paths_ignore[i] = main.utils79.trim(ary_paths_ignore[i]);
 							if( !main.php.strlen(ary_paths_ignore[i]) ){
 								ary_paths_ignore[i] = undefined;
 								delete(ary_paths_ignore[i]);

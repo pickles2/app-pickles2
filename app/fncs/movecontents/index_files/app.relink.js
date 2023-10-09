@@ -11,7 +11,7 @@
 		 * パスの置き換え
 		 */
 		function replacePath( path, currentPath, task ){
-			var tmp = px.php.trim(path);
+			var tmp = px.utils79.trim(path);
 			if( tmp.match( new RegExp('^[a-zA-Z]+\\:') ) ){
 				return path;
 			}
