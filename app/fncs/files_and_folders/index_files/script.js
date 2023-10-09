@@ -390,33 +390,51 @@ window.contApp = new (function( main ){
 	 * 初期化
 	 */
 	$(window).on('load', function(){
-		$elms.remoteFinder = $('#cont_finder');
-		remoteFinder = new RemoteFinder(
-			document.getElementById('cont_finder'),
-			{
-				"gpiBridge": function(input, callback){
-					// console.log(input);
-					_pj.remoteFinder.gpi(input, function(result){
-						callback(result);
-					});
-				},
-				"mkfile": mkfile.mkfile,
-				"mkdir": mkdir.mkdir,
-				"open": open.open,
-				"copy": copy.copy,
-				"rename": rename.rename,
-				"remove": remove.remove
-			}
-		);
-		// console.log(remoteFinder);
-		remoteFinder.init('/', {}, function(){
-			console.log('ready.');
-		});
+		main.it79.fnc({}, [
+			function(it){
+				if( main.getAppearance() == 'dark' ){
+					// --------------------------------------
+					// ダークモードスタイルを読み込む
+					var $link = document.createElement('link');
+					$link.href = '../../common/remote-finder/dist/themes/darkmode.css';
+					$link.rel = 'stylesheet';
+					$link.className = 'px2-darkmode';
+					var $head = document.querySelector('head');
+					$head.appendChild($link);
+				}
+				it.next();
+			},
+			function(it){
+				$elms.remoteFinder = $('#cont_finder');
+				remoteFinder = new RemoteFinder(
+					document.getElementById('cont_finder'),
+					{
+						"gpiBridge": function(input, callback){
+							// console.log(input);
+							_pj.remoteFinder.gpi(input, function(result){
+								callback(result);
+							});
+						},
+						"mkfile": mkfile.mkfile,
+						"mkdir": mkdir.mkdir,
+						"open": open.open,
+						"copy": copy.copy,
+						"rename": rename.rename,
+						"remove": remove.remove
+					}
+				);
+				remoteFinder.init('/', {}, function(){
+					console.log('ready.');
+				});
 
-		$(window).on('resize', function(){
-			onWindowResize();
-		});
-		onWindowResize();
+				$(window).on('resize', function(){
+					onWindowResize();
+				});
+				onWindowResize();
+
+				it.next();
+			},
+		]);
 	});
 
 	/**
@@ -505,7 +523,7 @@ window.contApp = new (function( main ){
 		;
 
 		return this;
-	} // openEditor()
+	}
 
 	/**
 	 * エディター画面を閉じる
@@ -518,7 +536,7 @@ window.contApp = new (function( main ){
 		;
 		_pj.updateGitStatus();
 		return this;
-	} // closeEditor()
+	}
 
 
 	/**
@@ -596,7 +614,6 @@ window.contApp = new (function( main ){
 				it1.next();
 			},
 			function(it1){
-				// console.log(pxExternalPath, path_type);
 				callback(pxExternalPath, path_type);
 				it1.next();
 			}

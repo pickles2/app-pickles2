@@ -15,78 +15,98 @@ window.contApp = new (function(){
 		$cont = $('.contents').html('');
 		$btnGitInit = $('<button class="px2-btn">');
 
-		if( !status.gitDirExists ){
-			// --------------------------------------
-			// git init されていない場合
-			$cont
-				.append( $($('#template-toInitialize-message').html()) )
-			;
-			$cont.find('.cont-btn-git-init')
-				.on('click', function(){
-					$(this).attr({'disabled': true});
-					git_init(this);
-				} )
-			;
+		main.it79.fnc({}, [
+			function(it){
+				if( main.getAppearance() == 'dark' ){
+					// --------------------------------------
+					// ダークモードスタイルを読み込む
+					var $link = document.createElement('link');
+					$link.href = '../../common/gitui79/dist/themes/darkmode.css';
+					$link.rel = 'stylesheet';
+					$link.className = 'px2-darkmode';
+					var $contentsStylesheet = document.querySelector('link.contents-stylesheet');
+					$contentsStylesheet.parentNode.insertBefore($link, $contentsStylesheet.nextElementSibling);
+				}
+				it.next();
+			},
+			function(it){
 
-		}else{
-			// --------------------------------------
-			// gitリポジトリが存在する場合
+				if( !status.gitDirExists ){
+					// --------------------------------------
+					// git init されていない場合
+					$cont
+						.append( $($('#template-toInitialize-message').html()) )
+					;
+					$cont.find('.cont-btn-git-init')
+						.on('click', function(){
+							$(this).attr({'disabled': true});
+							git_init(this);
+						} )
+					;
 
-			window.px2style.loading();
+				}else{
+					// --------------------------------------
+					// gitリポジトリが存在する場合
 
-			var $elm = document.querySelector('.contents');
-			var gitUi79 = new GitUi79( $elm, function( cmdAry, callback ){
+					window.px2style.loading();
 
-				var cmd = JSON.parse(JSON.stringify(cmdAry));
-				cmd.unshift(main.cmd('git'));
+					var $elm = document.querySelector('.contents');
+					var gitUi79 = new GitUi79( $elm, function( cmdAry, callback ){
 
-				// PHPスクリプトを実行する
-				var stdout = '';
-				var stderr = '';
-				main.commandQueue.client.addQueueItem(
-					cmd,
-					{
-						'cdName': 'default',
-						'tags': [
-							'pj-'+pj.get('id'),
-							'project-git'
-						],
-						'accept': function(queueId){
-							// console.log(queueId);
-						},
-						'open': function(message){
-						},
-						'stdout': function(message){
-							for(var idx in message.data){
-								stdout += message.data[idx];
+						var cmd = JSON.parse(JSON.stringify(cmdAry));
+						cmd.unshift(main.cmd('git'));
+
+						// PHPスクリプトを実行する
+						var stdout = '';
+						var stderr = '';
+						main.commandQueue.client.addQueueItem(
+							cmd,
+							{
+								'cdName': 'default',
+								'tags': [
+									'pj-'+pj.get('id'),
+									'project-git'
+								],
+								'accept': function(queueId){
+									// console.log(queueId);
+								},
+								'open': function(message){
+								},
+								'stdout': function(message){
+									for(var idx in message.data){
+										stdout += message.data[idx];
+									}
+								},
+								'stderr': function(message){
+									for(var idx in message.data){
+										stdout += message.data[idx];
+										stderr += message.data[idx];
+										console.error(message.data[idx]);
+									}
+								},
+								'close': function(message){
+									var code = message.data;
+									// console.log(stdout, stderr, code);
+									callback(code, stdout);
+									if( cmdAry[0] == 'status' ){
+										pj.updateGitStatus(function(){});
+									}
+									return;
+								}
 							}
-						},
-						'stderr': function(message){
-							for(var idx in message.data){
-								stdout += message.data[idx];
-								stderr += message.data[idx];
-								console.error(message.data[idx]);
-							}
-						},
-						'close': function(message){
-							var code = message.data;
-							// console.log(stdout, stderr, code);
-							callback(code, stdout);
-							if( cmdAry[0] == 'status' ){
-								pj.updateGitStatus(function(){});
-							}
-							return;
-						}
-					}
-				);
+						);
 
-			}, {} );
-			gitUi79.init(function(){
-				window.px2style.closeLoading();
-				console.log('gitUi79: Standby.');
-			});
+					}, {} );
+					gitUi79.init(function(){
+						window.px2style.closeLoading();
+						console.log('gitUi79: Standby.');
+					});
 
-		}
+				}
+				it.next();
+			},
+		]);
+
 
 	}
 
