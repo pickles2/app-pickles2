@@ -1,12 +1,6 @@
-let fsx = require('fs-extra');
 let gulp = require('gulp');
-let sass = require('gulp-sass');//CSSコンパイラ
 let plumber = require("gulp-plumber");//コンパイルエラーが起きても watch を抜けないようになる
-let concat = require('gulp-concat');//ファイルの結合ツール
-let rename = require("gulp-rename");//ファイル名の置き換えを行う
 let browserify = require("gulp-browserify");//NodeJSのコードをブラウザ向けコードに変換
-let webpack = require('webpack');
-let webpackStream = require('webpack-stream');
 let packageJson = require(__dirname+'/package.json');
 
 

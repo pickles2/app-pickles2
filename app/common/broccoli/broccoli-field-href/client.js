@@ -1,8 +1,4 @@
 window.BroccoliFieldHref = function(){
-	// console.log('broccoli-field-href - client.js');
-	// console.log(window.px);
-
-	var php = require('phpjs');
 	var utils79 = require('utils79');
 
 	/**

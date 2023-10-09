@@ -137,9 +137,6 @@ new (function($, window){
 	var _selectedProject = null;
 	var _pj = null;
 
-	var _php = require('phpjs');
-	this.php = _php;
-
 	var _it79 = require('iterate79');
 	this.it79 = _it79;
 

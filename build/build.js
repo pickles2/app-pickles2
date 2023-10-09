@@ -6,7 +6,6 @@ var NwBuilder = require('nw-builder');
 var packageJson = require('../package.json');
 var isProductionMode = true;
 var devManifestInfo = false;
-var phpjs = require('phpjs');
 var date = new Date();
 var appName = packageJson.name;
 var versionSign = packageJson.version;
@@ -30,10 +29,27 @@ if( utils79.is_file( './apple_codesign.json' ) ){
 	}
 }
 
-function pad(str, len){
-	str += '';
-	str = phpjs.str_pad(str, len, '0', 'STR_PAD_LEFT');
-	return str;
+/**
+ * 指定された文字列の左を指定された桁数になるように0で埋める
+ *
+ * @param {String} str 対象文字列
+ * @param {Number} len パディングする桁数
+ * @returns 
+ */
+function pad0(str, len){
+    if (typeof(str) !== 'string') {
+        str = String(str);
+    }
+
+    // 0でのパディングが必要な長さを計算
+    const paddingLength = len - str.length;
+    if (paddingLength <= 0) {
+        return str; // パディングの必要がない場合、そのままの文字列を返す
+    }
+
+    // 0でパディングした文字列を作成
+    const padding = '0'.repeat(paddingLength);
+    return padding + str;
 }
 function getTimeString(){
 	var date = new Date();
@@ -52,8 +68,8 @@ if( packageJson.version.match(/\+(?:[a-zA-Z0-9\_\-\.]+\.)?dev$/) ){
 	isProductionMode = false;
 }
 if( !isProductionMode ){
-	versionSign += '-'+pad(date.getFullYear(),4)+pad(date.getMonth()+1, 2)+pad(date.getDate(), 2);
-	versionSign += '-'+pad(date.getHours(),2)+pad(date.getMinutes(), 2);
+	versionSign += '-'+pad0(date.getFullYear(),4)+pad0(date.getMonth()+1, 2)+pad0(date.getDate(), 2);
+	versionSign += '-'+pad0(date.getHours(),2)+pad0(date.getMinutes(), 2);
 	packageJson.version = versionSign;
 	if( packageJson.devManifestUrl ){
 		packageJson.manifestUrl = packageJson.devManifestUrl;
