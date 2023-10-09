@@ -14,14 +14,12 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "gulp && mix --production"
     },
     "author": "Tomoya Koyanagi",
     "license": "MIT",
     "dependencies": {
         "@tomk79/pickles2-code-search": "github:tomk79/pickles2-code-search#develop",
-        "broccoli-field-table": "^0.1.2",
-        "broccoli-html-editor": "^1.0.7",
         "broccoli-processor": "github:broccoli-html-editor/node-broccoli-processor#develop",
         "broccoli-styleguide-generator": "github:broccoli-html-editor/node-broccoli-styleguide-generator#develop",
         "cheerio": "^0.22.0",
@@ -72,6 +70,7 @@
         "nw": "0.79.0-sdk",
         "nw-builder": "4.3.9",
         "resolve-url-loader": "^5.0.0",
+        "sass": "^1.69.0",
         "sass-loader": "^12.6.0",
         "url-loader": "^4.1.1",
         "webpack": "^5.88.2",
