@@ -82,6 +82,7 @@ mix
 	// .sass('./src/common/styles/_css/_px2style_v2/_utils/_utils.css.scss', './app/common/styles/_css/_px2style_v2/_utils/_utils.css')
 	// .sass('./src/common/styles/_css/_px2style_v2/_header/_header.css.scss', './app/common/styles/_css/_px2style_v2/_header/_header.css')
 	.sass('./src/common/styles/contents.css.scss', './app/common/styles/contents.css')
+	.sass('./src/common/styles/contents-darkmode.css.scss', './app/common/styles/contents-darkmode.css')
 	.sass('./src/mods/systeminfo/index_files/style.css.scss', './app/mods/systeminfo/index_files/style.css')
 
 	.copy('./src/fncs/rebuild_guiedit_contents/index_files/style.css', './app/fncs/rebuild_guiedit_contents/index_files/style.css')

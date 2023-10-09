@@ -7,6 +7,7 @@
     "/app/fncs/contents/index_files/style.css": "/app/fncs/contents/index_files/style.css",
     "/app/fncs/home/index_files/style.css": "/app/fncs/home/index_files/style.css",
     "/app/mods/systeminfo/index_files/style.css": "/app/mods/systeminfo/index_files/style.css",
+    "/app/common/styles/contents-darkmode.css": "/app/common/styles/contents-darkmode.css",
     "/app/common/styles/contents.css": "/app/common/styles/contents.css",
     "/app/index_files/style.css": "/app/index_files/style.css",
     "/app/fncs/make_content_files_by_list/index_files/style.css": "/app/fncs/make_content_files_by_list/index_files/style.css",
