@@ -3524,13 +3524,11 @@ window.contApp = new (function(){
 				// テーマプラグインの一覧を取得
 				pj.px2dthelperGetAll('/', {}, function(result){
 					px2all = result;
-					// console.log(px2all);
 					themePluginList = [];
 					try {
 						themePluginList = px2all.packages.package_list.themes;
 					} catch (e) {
 					}
-					// console.log(themePluginList);
 
 					// テーマコレクションディレクトリのパスを求める
 					realpathThemeCollectionDir = px2all.realpath_theme_collection_dir;
@@ -3552,7 +3550,6 @@ window.contApp = new (function(){
 								multithemePluginOptions = result[0].options;
 							} catch (e) {
 							}
-							// console.log(multithemePluginOptions);
 							it1.next(arg);
 						}
 					}
@@ -4285,7 +4282,6 @@ module.exports = function(main, $elms){
 							}catch(e){
 								console.error('Failed to parse JSON "client_resources".', e);
 							}
-							console.log(resources);
 							it79.ary(
 								resources.css,
 								function(it2, row, idx){
@@ -4309,6 +4305,17 @@ module.exports = function(main, $elms){
 											script.src = 'file://'+row;
 										},
 										function(){
+											if( main.getAppearance() == 'dark' ){
+												// --------------------------------------
+												// ダークモードスタイルを読み込む
+												var $link = document.createElement('link');
+												$link.href = 'file://'+main.utils79.dirname(resources.css[0])+'/themes/darkmode.css';
+												$link.rel = 'stylesheet';
+												$link.className = 'px2-darkmode';
+												var $head = document.querySelector('head');
+												$head.appendChild($link);
+											}
+
 											it1.next();
 										}
 									);

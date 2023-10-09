@@ -36,7 +36,6 @@ module.exports = function(main, $elms){
 							}catch(e){
 								console.error('Failed to parse JSON "client_resources".', e);
 							}
-							console.log(resources);
 							it79.ary(
 								resources.css,
 								function(it2, row, idx){
@@ -60,6 +59,17 @@ module.exports = function(main, $elms){
 											script.src = 'file://'+row;
 										},
 										function(){
+											if( main.getAppearance() == 'dark' ){
+												// --------------------------------------
+												// ダークモードスタイルを読み込む
+												var $link = document.createElement('link');
+												$link.href = 'file://'+main.utils79.dirname(resources.css[0])+'/themes/darkmode.css';
+												$link.rel = 'stylesheet';
+												$link.className = 'px2-darkmode';
+												var $head = document.querySelector('head');
+												$head.appendChild($link);
+											}
+
 											it1.next();
 										}
 									);
