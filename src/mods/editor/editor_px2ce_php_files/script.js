@@ -86,6 +86,23 @@ window.contApp = new (function( main ){
 									$('head').append(link);
 									link.rel = 'stylesheet';
 									link.href = 'file://'+row;
+
+									if( main.getAppearance() === 'dark' ){
+										// --------------------------------------
+										// ダークモードスタイルを読み込む
+										if( row.match(/\/broccoli\.css$/) ){
+											var linkDarkmode = document.createElement('link');
+											linkDarkmode.rel = 'stylesheet';
+											linkDarkmode.href = 'file://'+main.utils79.dirname(row)+'/themes/darkmode.css';
+											$('head').append(linkDarkmode);
+										}
+										if( row.match(/\/pickles2\-contents\-editor\.css$/) ){
+											var linkDarkmode = document.createElement('link');
+											linkDarkmode.rel = 'stylesheet';
+											linkDarkmode.href = 'file://'+main.utils79.dirname(row)+'/themes/darkmode.css';
+											$('head').append(linkDarkmode);
+										}
+									}
 								},
 								function(){
 									it79.ary(
