@@ -110,7 +110,7 @@ window.contApp = new (function( main ){
 								currentPagePath = app.extractPagePathFromPreviewLocation();
 
 								it.next(prop);
-							} ,
+							},
 							function(it, prop){
 								var preWin = ( $elms.previewIframe.get(0).contentWindow );
 								$(preWin.document).find('a')
@@ -126,14 +126,19 @@ window.contApp = new (function( main ){
 										return true;
 									});
 								it.next(prop);
-							} ,
+							},
 							function(it, prop){
-								// console.log(prop);
+								// px2-clover のウィジェットを削除する
+								var preWin = ( $elms.previewIframe.get(0).contentWindow );
+								$(preWin.document).find('[data-px2-clover-preview-widget]').remove();
+								it.next(prop);
+							},
+							function(it, prop){
 								app.goto( currentPagePath, {}, function(){
 									it.next(prop);
 								} );
-							} ,
-							function(it, prop){
+							},
+							function(){
 								callback();
 							}
 						]);
@@ -178,7 +183,7 @@ window.contApp = new (function( main ){
 			}
 		]);
 
-	} // init()
+	}
 
 	/**
 	 * 素材フォルダを開く
