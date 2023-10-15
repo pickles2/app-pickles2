@@ -10,6 +10,7 @@
 	var expressQueue = require('express-queue');
 	var expressPickles2 = require('express-pickles2');
 	var morgan = require('morgan');
+	var cheerio = require('cheerio');
 	var FileStreamRotator = require('file-stream-rotator');
 	var _server = express();
 	var _path_access_log;
@@ -164,6 +165,13 @@
 				'processor': function(html, ext, callback, response){
 					// console.log(response);
 					if( ext == 'html' ){
+
+						(function(){
+							var $ = cheerio.load(html, {decodeEntities: false});
+							$('[data-px2-clover-preview-widget]').remove();
+							html = $.html();
+						})();
+
 						if( html.match('<script data-broccoli-receive-message="yes">') ){
 							// すでに挿入済みの場合はスキップする。
 							// `external_preview_server_origin` が導入された際に、

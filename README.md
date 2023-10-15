@@ -98,7 +98,7 @@ Mac で Windows 版をビルドするにあたり、次の環境が必要です�
 - PXコマンドのいくつかに、PHPコマンドのパスが引き回されない不具合を修正。
 - その他いくつかのUIの改善と不具合の修正。
 - 旧型の組み込みエンジン `broccoli-html-editor` のサポートを廃止。(`broccoli-html-editor-php` のみ対応)
-- Clover CMS が有効な場合に、プレビューウィジェットを隠すようになった。
+- Clover CMS のプレビューウィジェットを隠し、共存できるようになった。
 
 ### Pickles 2 babycorn v2.0.0-beta.29 (2021年6月12日)
 
