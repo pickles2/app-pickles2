@@ -5,15 +5,13 @@ window.contApp = new (function(){
 	var pj = main.getCurrentProject();
 	this.pj = pj;
 	var status = pj.status();
-	var $cont,
-		$btnGitInit;
+	var $cont;
 
 	/**
 	 * initialize
 	 */
 	function init(){
 		$cont = $('.contents').html('');
-		$btnGitInit = $('<button class="px2-btn">');
 
 		main.it79.fnc({}, [
 			function(it){
@@ -68,7 +66,6 @@ window.contApp = new (function(){
 									'project-git'
 								],
 								'accept': function(queueId){
-									// console.log(queueId);
 								},
 								'open': function(message){
 								},
@@ -79,15 +76,13 @@ window.contApp = new (function(){
 								},
 								'stderr': function(message){
 									for(var idx in message.data){
-										stdout += message.data[idx];
 										stderr += message.data[idx];
 										console.error(message.data[idx]);
 									}
 								},
 								'close': function(message){
 									var code = message.data;
-									// console.log(stdout, stderr, code);
-									callback(code, stdout);
+									callback(code, stdout, stderr);
 									if( cmdAry[0] == 'status' ){
 										pj.updateGitStatus(function(){});
 									}
@@ -116,7 +111,8 @@ window.contApp = new (function(){
 	function git_init(btn){
 		$(btn).attr('disabled', 'disabled');
 		var pj = main.getCurrentProject();
-		$('.cont_console').text('');
+		var $console = $('.cont_console');
+		$console.text('');
 
 		var stdout = '';
 		main.commandQueue.client.addQueueItem(
@@ -131,7 +127,6 @@ window.contApp = new (function(){
 					'git-init'
 				],
 				'accept': function(queueId){
-					// console.log(queueId);
 				},
 				'open': function(message){
 				},
@@ -139,13 +134,13 @@ window.contApp = new (function(){
 					for(var idx in message.data){
 						stdout += message.data[idx];
 					}
-					$('.cont_console').text(stdout);
+					$console.text(stdout);
 				},
 				'stderr': function(message){
 					for(var idx in message.data){
 						stdout += message.data[idx];
 					}
-					$('.cont_console').text(stdout);
+					$console.text(stdout);
 				},
 				'close': function(message){
 					$(btn).removeAttr('disabled');
