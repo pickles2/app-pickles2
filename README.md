@@ -53,7 +53,6 @@ $ gulp watch
 ### Build application
 
 ```bash
-$ php docs/help/htdocs/.px_execute.php /?PX=publish.run
 $ npm run build
 ```
 
