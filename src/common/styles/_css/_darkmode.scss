@@ -1,6 +1,11 @@
 $darkmode-text-color: #ccc;
 $darkmode-background-color: #242424;
 
+:root {
+	--px2-text-color: #ccc;
+	--px2-background-color: #242424;
+}
+
 body.px2-darkmode,
 .px2-darkmode body {
 	color: $darkmode-text-color;
@@ -33,7 +38,7 @@ body.px2-darkmode,
 	/**
 	 * ダイアログボックス
 	 */
-	.dialog_box{
+	.dialog_box {
 		color: $darkmode-text-color;
 		background-color: $darkmode-background-color;
 		border:1px solid #222;
@@ -43,7 +48,7 @@ body.px2-darkmode,
 	/**
 	 * コード
 	 */
-	.contents pre{
+	.contents pre {
 		background: #050505;
 		border-color: #0f0f0f;
 	}
@@ -51,27 +56,27 @@ body.px2-darkmode,
 	/**
 	 * リストビュー
 	 */
-	ul.listview{
+	ul.listview {
 		border-color: #333;
 		box-shadow: 1px 2px 5px rgba(255, 255, 255, 0.1);
 
-		li{
+		li {
 			border-color: #333;
 			background-color: #0e0e0e;
-			>a{
+			>a {
 				background-color: #0e0e0e;
-				&:hover{
+				&:hover {
 					background-color: #222;
 				}
-				&.current{
+				&.current {
 					background-color: #00a0e6;
 					color: #fff;
 				}
 			}
 
-			ul{
+			ul {
 				border-color: #222;
-				li{
+				li {
 					border-color: #222;
 				}
 			}
@@ -83,28 +88,28 @@ body.px2-darkmode,
 	/**
 	 * スクロールバー
 	 */
-	::-webkit-scrollbar{
+	::-webkit-scrollbar {
 		/* 1 */
 		background-color: #0c0c0c;
 	}
-	::-webkit-scrollbar-button{
+	::-webkit-scrollbar-button {
 		/* 2 */
 	}
-	::-webkit-scrollbar-track{
+	::-webkit-scrollbar-track {
 		/* 3 */
 	}
-	::-webkit-scrollbar-track-piece{
+	::-webkit-scrollbar-track-piece {
 		/* 4 */
 	}
-	::-webkit-scrollbar-thumb{
+	::-webkit-scrollbar-thumb {
 		/* 5 */
 		background-color: #333;
 		border-color: #000;
 	}
-	::-webkit-scrollbar-corner{
+	::-webkit-scrollbar-corner {
 		/* 6 */
 	}
-	::-webkit-resizer{
+	::-webkit-resizer {
 		/* 7 */
 	}
 
@@ -115,7 +120,7 @@ body.px2-darkmode,
 		background-color: #222;
 		border-color: #666;
 	}
-	.dropdown-menu{
+	.dropdown-menu {
 		background-color: #333;
 		a:hover {
 			background-color: #444;
@@ -147,7 +152,7 @@ body.px2-darkmode,
 	}
 
 	// Bootstrap 4
-    .nav-tabs .nav-link{
+    .nav-tabs .nav-link {
 		color: $darkmode-text-color;
 		background-color: transparent;
 		&:focus,
@@ -157,7 +162,7 @@ body.px2-darkmode,
 		}
 	}
     .nav-tabs .nav-item.show .nav-link,
-    .nav-tabs .nav-link.active{
+    .nav-tabs .nav-link.active {
 		color: $darkmode-text-color;
 		background-color: transparent;
 		border-bottom-color: $darkmode-background-color;
@@ -172,97 +177,97 @@ body.px2-darkmode,
 	/**
 	 * Header
 	 */
-	.px2-header{
+	.px2-header {
 		color: $darkmode-text-color;
 
-		&__inner{
+		&__inner {
 			background-color: #222;
 			box-shadow: 0 5px 13px rgba(1000, 100, 100, 0.1);
 		}
 
-		a{
+		a {
 			color: #ccc;
-			&:hover{
+			&:hover {
 				color: #fff;
 			}
 		}
 
 		// LOGO
-		&__px2logo{
-			a{
+		&__px2logo {
+			a {
 				background-color: #222;
 			}
-		} // px2logo
+		}
 
-		&__id{
-			a{
-				&:hover{
+		&__id {
+			a {
+				&:hover {
 					color: #fff;
 				}
 			}
-		} // id
+		}
 
 		// グローバルメニュー
-		&__global-menu{
-			ul{
-				li{
-					a,span{
+		&__global-menu {
+			ul {
+				li {
+					a,span {
 						color: #999;
-						&.current{
+						&.current {
 							border-bottom-color: rgba(0, 0, 0, 0.85);
 						}
 					}
 				}
 
-				li.px2-header__global-menu-group{
-					>a::after{
+				li.px2-header__global-menu-group {
+					>a::after {
 						border-color:#999;
 						border-top-color:transparent;
 						border-bottom-color:transparent;
 					}
 				}
 			}
-		} // global-menu
+		}
 
 		&__shoulder-menu {
 			>button {
 				background: #060606;
 			}
-			>ul{
+			>ul {
 				background-color: #555;
 				border-color: #222;
 
-				li{
+				li {
 					border-bottom-color: #333;
 
-					a{
+					a {
 						color: #ccc;
 						background-color: #555;
-						&:hover{
+						&:hover {
 							background-color: #444;
 							color: #eee;
 						}
-						&.current{
+						&.current {
 							color: #eee;
 						}
 					}
 				}
-				li.px2-header__shoulder-menu-group{
-					>a::after{
+				li.px2-header__shoulder-menu-group {
+					>a::after {
 						border-color:#eee;
 						border-top-color:transparent;
 						border-bottom-color:transparent;
 					}
-					ul{
-						li{
-							a{
+					ul {
+						li {
+							a {
 								background-color: #333;
 								color: #ddd;
-								&:hover{
+								&:hover {
 									background-color: #444;
 									color: #eee;
 								}
-								&.current{
+								&.current {
 									color: #eee;
 								}
 							}

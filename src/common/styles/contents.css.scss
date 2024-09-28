@@ -4,15 +4,15 @@ $text-color: #333;
 $background-color: #f9f9f9;
 
 :root {
-  --px2-main-color: #00a0e6;
-  --px2-text-color: #333;
-  --px2-background-color: #f9f9f9;
+	--px2-main-color: #00a0e6;
+	--px2-text-color: #333;
+	--px2-background-color: #f9f9f9;
 }
 
 html,
 body {
-  font-size: medium;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+	font-size: medium;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 body{
 	color: $text-color;
@@ -30,13 +30,14 @@ textarea,
 input,
 code,
 pre,
-.selectable{ // 選択可能領域
+.selectable{
+	// 選択可能領域
 	user-select: text;
 }
-*:focus{
+*:focus {
 	outline: none;
 }
-img, svg{
+img, svg {
 	max-width:100%;
 }
 
@@ -62,22 +63,22 @@ h6, .px2-h6, .h6 {
 	font-size: 16px;
 }
 
-a{
+a {
 	color: #000;
 	text-decoration: underline;
 }
-a:hover{
+a:hover {
 	color: #666;
 }
-.contents{
-	.input-group-btn{
-		.px2-btn{
+.contents {
+	.input-group-btn {
+		.px2-btn {
 			font-size: 12px;
 			width: 100%;
 		}
 	}
-	.input-group-btn-lg{
-		.px2-btn{
+	.input-group-btn-lg {
+		.px2-btn {
 			font-size: 16px;
 			width: 100%;
 		}
@@ -87,31 +88,31 @@ a:hover{
 /**
  * スクロールバー
  */
-::-webkit-scrollbar{
+::-webkit-scrollbar {
 	/* 1 */
 	background-color: #f3f3f3;
 	/*width: 8px;*/
 	/*height: 8px;*/
 }
-::-webkit-scrollbar-button{
+::-webkit-scrollbar-button {
 	/* 2 */
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
 	/* 3 */
 }
-::-webkit-scrollbar-track-piece{
+::-webkit-scrollbar-track-piece {
 	/* 4 */
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
 	/* 5 */
 	background-color: #ccc;
 	border:1px solid #fff;
 	border-radius: 4px;
 }
-::-webkit-scrollbar-corner{
+::-webkit-scrollbar-corner {
 	/* 6 */
 }
-::-webkit-resizer{
+::-webkit-resizer {
 	/* 7 */
 }
 
@@ -132,7 +133,7 @@ a:hover{
 		box-sizing: border-box;
 		margin: 0 auto;
 		padding: 1em 0 0.5em;
-		h1{
+		h1 {
 			margin: 0;
 			padding: 0;
 			font-size: 28px;
@@ -145,7 +146,7 @@ a:hover{
 		@media all and (max-width: 768px) {
 			width: calc(100% - 15px - 15px);
 			margin: 0 auto;
-			h1{
+			h1 {
 				font-size: 24px;
 			}
 		}
@@ -230,7 +231,7 @@ body.theme-hide-h1-container {
 /**
  * ダイアログボックス
  */
-.dialog_box{
+.dialog_box {
 	color: $text-color;
 	background-color: $background-color;
 	padding: 15px;
@@ -242,66 +243,66 @@ body.theme-hide-h1-container {
 /**
  * フォーム要素
  */
-.form_elements input{
+.form_elements input {
 	max-width:100%;
 }
 
 /**
  * コード
  */
-.contents pre{
+.contents pre {
 	background: #fafafa;
 	border: 1px solid #f0f0f0;
 }
-.contents pre code{
+.contents pre code {
 	border: none;
 	background-color: transparent;
 	padding: 0;
 	margin: 0;
 }
-.contents code{
+.contents code {
 	border: 0px none;
 }
 
 /**
  * リストビュー
  */
-ul.listview{
+ul.listview {
 	border: 1px solid #999;
 	border-radius: 5px;
 	padding: 0;
 	overflow:hidden;
 	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
 
-	li{
+	li {
 		border-bottom: 1px solid #999;
 		list-style-type: none;
 		margin:0; padding: 0;
-		&:last-child{
+		&:last-child {
 			border: none;
 		}
-		>a{
+		>a {
 			display: block;
 			text-decoration: none;
 			padding: 0.3em 1.5em;
 			background-color: #fefefe;
-			&:hover{
+			&:hover {
 				background-color: #f9f9f9;
 			}
-			&.current{
+			&.current {
 				font-weight: bold;
 				background-color: #00a0e6;
 				color: #fff;
 			}
 		}
 
-		ul{
+		ul {
 			padding: 0;
 			margin: 0;
 			border-top: 1px dotted #ddd;
-			li{
+			li {
 				border-bottom: 1px dotted #ddd;
-				>a{
+				>a {
 					padding-left: 2.5em;
 				}
 			}
@@ -354,7 +355,7 @@ ul.listview{
  * プレビューウィンドウ
  * ※JSとセットです。
  */
-.preview_window_frame{
+.preview_window_frame {
 	border-style: solid;
 	border-width: 63px 17px 18px 62px;
 	border-image:         url("../../../app/common/images/windowframe.png") 63 17 18 62 repeat stretch;
@@ -366,17 +367,15 @@ ul.listview{
 	position: relative; left: 0; top: 0;
 	height: 300px;
 }
-.preview_window_frame--inner{
-	/*padding: -13px -2px -13px -57px;*/
+.preview_window_frame--inner {
 	margin: 0;
-	/*width: 100%; height: 100%;*/
 	display: block;
 	position: absolute;
 	top:-13px; right:-12px; bottom:-13px; left:-57px;
 	border: none;
 	box-sizing: border-box;
 }
-.preview_window_frame--inner > iframe{
+.preview_window_frame--inner > iframe {
 	width: 100%; height: 100%;
 	border: none;
 	box-sizing: border-box;
@@ -385,20 +384,21 @@ ul.listview{
 /**
  * Bootstrap3: btn
  */
-.contents .dropdown-menu{}
-.contents .dropdown-menu li{
+.contents .dropdown-menu {
+}
+.contents .dropdown-menu li {
 	list-style-type: inherit;
 }
-.contents .btn-group button{
+.contents .btn-group button {
 	margin: inherit;
 }
 .btn-default {
 	color: #333 !important;
 }
-.btn-primary ,
-.btn-success ,
-.btn-info ,
-.btn-warning ,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
 .btn-danger {
 	color: #fff !important;
 }
@@ -406,7 +406,7 @@ ul.listview{
 /**
  * Bootstrap3 Tooltip
  */
-.tooltip[role=tooltip]{
+.tooltip[role=tooltip] {
 	word-wrap: break-word;
 }
 
@@ -435,7 +435,7 @@ ul.listview{
 }
 
 // Bootstrap 4
-.nav-tabs .nav-link{
+.nav-tabs .nav-link {
 	color: $text-color;
 	background-color: transparent;
 	&:focus,
@@ -445,7 +445,7 @@ ul.listview{
 	}
 }
 .nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active{
+.nav-tabs .nav-link.active {
 	color: $text-color;
 	background-color: transparent;
 	border-bottom-color: $background-color;
